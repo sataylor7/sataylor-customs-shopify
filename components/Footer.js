@@ -28,13 +28,17 @@ const Footer = () => (
         ))}
       </div>
       <hr className='my-6 border-gray-200 sm:mx-auto dark:border-gray-700 md:hidden' />
-      <div className='text-white uppercase font-semibold flex-1 justify-center flex mt-4 md:mt-0'>
-        <h3>Our Mission</h3>
+      <div className='text-white flex-1 flex mt-4 md:mt-0 flex-col text-sm'>
+        <h3 className='uppercase font-semibold mb-6 '>Our Mission</h3>
+        <p>
+          Create custom, handmade, one of a kind, garments and accessories that
+          are uniquely you.
+        </p>
       </div>
     </div>
     <hr className='my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8' />
-    <div className='sm:flex sm:items-center sm:justify-between'>
-      <span className='text-sm text-gray-500 sm:text-center dark:text-gray-400'>
+    <div className='flex flex-col md:flex-row sm:items-center sm:justify-between'>
+      <span className='mb-6 md:mb-0 text-sm text-gray-500 sm:text-center dark:text-gray-400'>
         © {year}{' '}
         <a
           href='#'
@@ -55,7 +59,7 @@ const Footer = () => (
           SATaylor Studios LLC.
         </a>
       </span>
-      <div className='flex mt-4 space-x-6 sm:justify-center sm:mt-0'>
+      <div className='md:flex md:justify-center space-x-6 hidden mt-0'>
         {social.map((item, index) => (
           <>
             {item.show && (

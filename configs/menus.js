@@ -35,7 +35,7 @@ const footerLinks = [
     children: [
       {
         id: 0,
-        link: '#',
+        link: 'https://instagram.com/sataylorcustoms',
         value: 'Instagram',
       },
       // {
