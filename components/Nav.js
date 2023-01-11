@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { CartContext } from '../context/shopContext';
 import MiniCart from './MiniCart';
 import { headerLinks } from '../configs/menus';
-import Logo from './logo';
+import Logo from './Logo';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 
 export default function Nav() {
