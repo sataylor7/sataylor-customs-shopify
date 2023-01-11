@@ -38,11 +38,11 @@ const footerLinks = [
         link: '#',
         value: 'Instagram',
       },
-      {
-        id: 1,
-        link: '#',
-        value: 'Facebook',
-      },
+      // {
+      //   id: 1,
+      //   link: '#',
+      //   value: 'Facebook',
+      // },
     ],
   },
   {
@@ -70,7 +70,7 @@ const social = [
     icon: <Facebook />,
     className: 'facebook',
     title: 'facebook',
-    show: true,
+    show: false,
   },
   {
     id: 1,
@@ -98,7 +98,7 @@ const social = [
   },
   {
     id: 4,
-    link: '/',
+    link: 'https://instagram.com/sataylorcustoms',
     icon: <Instagram />,
     className: 'instagram',
     title: 'instagram',
@@ -118,7 +118,7 @@ const headerLinks = [
   {
     id: 1,
     pathname: '/',
-    title: 'Shop',
+    title: 'Catalog',
   },
   {
     id: 2,

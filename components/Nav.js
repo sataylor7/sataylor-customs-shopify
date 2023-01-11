@@ -80,7 +80,7 @@ export default function Nav() {
             navbar ? 'block' : 'hidden'
           }`}
           id='mobile-menu-2'>
-          <ul className='flex flex-col mt-4 font-regular md:flex-row md:space-x-8 lg:mt-0'>
+          <ul className='flex flex-col mt-4 font-regular md:flex-row md:space-x-8 lg:mt-0 '>
             {headerLinks.map(({ id, pathname, title }) => {
               return (
                 <li key={id}>
