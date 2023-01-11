@@ -19,12 +19,12 @@ const ProductCard = ({ product }) => {
             </div>
           </div>
 
-          <div class='px-4 py-3 w-72'>
-            <p class='text-lg font-bold text-black truncate block capitalize'>
+          <div className='px-4 py-3 w-72'>
+            <p className='text-lg font-bold text-black truncate block capitalize'>
               {title}
             </p>
-            <div class='flex items-center'>
-              <p class='text-lg font-semibold text-black cursor-auto my-3'>
+            <div className='flex items-center'>
+              <p className='text-lg font-semibold text-black cursor-auto my-3'>
                 {formatter.format(price)}
               </p>
             </div>
