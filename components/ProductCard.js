@@ -3,12 +3,12 @@ import Image from 'next/image';
 import { formatter } from '../utils/helpers';
 
 const ProductCard = ({ product }) => {
-  const { handle, title } = product.node;
+  const { handle, title, availableForSale } = product.node;
 
   const { altText, url } = product.node.images.edges[0].node;
 
   const price = product.node.priceRange.minVariantPrice.amount;
-
+  console.log('product', product);
   return (
     <Link href={`/products/${handle}`}>
       <div className='w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl'>
@@ -23,10 +23,15 @@ const ProductCard = ({ product }) => {
             <p className='text-lg font-bold text-black truncate block capitalize'>
               {title}
             </p>
-            <div className='flex items-center'>
+            <div className='flex items-center justify-between'>
               <p className='text-lg font-semibold text-black cursor-auto my-3'>
                 {formatter.format(price)}
               </p>
+              {!availableForSale && (
+                <div className='bg-slate-400 text-white rounded-lg px-4 py-3'>
+                  Sold out
+                </div>
+              )}
             </div>
           </div>
         </a>
