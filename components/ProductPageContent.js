@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import RecommendedList from './RecommendedList';
 import { Disclosure } from '@headlessui/react';
-import { HiChevronDown } from 'react-icons/hi';
+import { HiChevronDown, HiScissors, HiOutlineBookOpen } from 'react-icons/hi';
 
 export default function ProductPageContent({ product }) {
   const images = [];
@@ -24,6 +24,7 @@ export default function ProductPageContent({ product }) {
 
   SwiperCore.use([Navigation, Pagination]);
   const products = product.collections.edges[0].node.products.edges;
+  console.log(products);
   return (
     <div>
       <div className='flex flex-col items-center justify-center w-full max-w-6xl mx-auto space-y-8 md:flex-row md:items-start md:space-y-0 md:space-x-4 lg:space-x-8'>
@@ -55,7 +56,11 @@ export default function ProductPageContent({ product }) {
                   as='div'
                   className='border-b-[1px] border-slate-200 pb-2'>
                   <Disclosure.Button className='py-2 flex items-center w-full justify-between'>
-                    Materials
+                    <div className='flex items-center gap-1'>
+                      <HiScissors />
+                      Materials
+                    </div>
+
                     <HiChevronDown className='ui-open:rotate-180 ui-open:transform' />
                   </Disclosure.Button>
                   <Disclosure.Panel className='text-gray-500'>
@@ -68,7 +73,10 @@ export default function ProductPageContent({ product }) {
                   as='div'
                   className='border-b-[1px] border-slate-200 pb-2'>
                   <Disclosure.Button className='py-2 flex items-center w-full justify-between'>
-                    Care Instructions{' '}
+                    <div className='flex items-center gap-1'>
+                      <HiOutlineBookOpen />
+                      Care Instructions
+                    </div>
                     <HiChevronDown className='ui-open:rotate-180 ui-open:transform' />
                   </Disclosure.Button>
                   <Disclosure.Panel className='text-gray-500'>
