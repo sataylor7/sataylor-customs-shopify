@@ -4,7 +4,7 @@ import { footerLinks, social } from '../configs/menus';
 const year = new Date().getUTCFullYear();
 const Footer = () => (
   <footer className='p-4 bg-white sm:p-6 dark:bg-slate-900'>
-    <div className='container mx-auto'>
+    <div className='container mx-auto max-w-screen-xl'>
       <div className='md:flex md:justify-between'>
         <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 md:flex-1'>
           {footerLinks.map((footerLink) => (
