@@ -7,7 +7,7 @@ export default function Home({ products }) {
   return (
     <div className=''>
       <Head>
-        <title>Modern eCommerce Course</title>
+        <title>S.A.Taylor Customs</title>
         <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
         <meta
           httpEquiv='Content-Type'
@@ -15,21 +15,38 @@ export default function Home({ products }) {
         />
         <meta
           name='description'
-          content='Modern eCommerce Development Course focusing on Shopify, Next.js, TailwindCSS, GraphQL. Additional topics include Storefront API, Static Site Generation, getStaticPaths, getStaticProps and more.'
+          content='Custom, handmade, one of a kind, garments and accessories that are uniquely you.'
         />
-        <meta property='og:title' content='Modern eCommerce Course' />
+        <link
+          rel='apple-touch-icon'
+          sizes='180x180'
+          href='/apple-touch-icon.png'
+        />
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='32x32'
+          href='/favicon-32x32.png'
+        />
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='16x16'
+          href='/favicon-16x16.png'
+        />
+        <meta property='og:title' content='S.A.Taylor Customs' />
         <meta property='og:type' content='website' />
-        <meta property='og:url' content='https://www.buildnextshop.com' />
+        {/* <meta property='og:url' content='https://www.buildnextshop.com' />
         <meta
           property='og:image'
           content='https://www.buildnextshop.com/share.png'
-        />
+        /> */}
         <meta
           property='og:description'
-          content='Modern eCommerce Development Course focusing on Shopify, Next.js, TailwindCSS, GraphQL. Additional topics include Storefront API, Static Site Generation, getStaticPaths, getStaticProps and more.'
+          content='Custom, handmade, one of a kind, garments and accessories that are uniquely you.'
         />
         <meta property='og:locale' content='en_US' />
-        <meta property='og:site_name' content='Modern eCommerce Course' />
+        <meta property='og:site_name' content='S.A.Taylor Customs' />
       </Head>
       <Hero />
       <ProductList products={products} />
