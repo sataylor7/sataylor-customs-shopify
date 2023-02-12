@@ -36,8 +36,9 @@ export default function ProductPageContent({ product }) {
               }}
               navigation
               pagination={{ clickable: true }}
+              watchOverflow='true'
               className='h-96 md:h-[500px] rounded-2xl'
-              loop='true'>
+              loop={images.length > 1 ? true : false}>
               {images}
             </Swiper>
           </div>
