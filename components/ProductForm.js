@@ -50,6 +50,8 @@ export default function ProductForm({ product }) {
     defaultValues[item.name] = item.values[0];
   });
 
+  console.log(product);
+
   const [selectedVariant, setSelectedVariant] = useState(allVariantOptions[0]);
   const [selectedOptions, setSelectedOptions] = useState(defaultValues);
 
@@ -85,12 +87,13 @@ export default function ProductForm({ product }) {
   }, [productInventory, selectedVariant]);
 
   return (
-    <div className='flex flex-col w-full p-4 shadow-lg rounded-2xl md:w-1/3'>
-      <h2 className='text-2xl font-bold'>{product.title}</h2>
-      <span className='pb-3'>
-        {formatter.format(product.variants.edges[0].node.priceV2.amount)}
+    <div className='flex flex-col w-full p-4 rounded-2xl'>
+      <p className='uppercase text-sm text-slate-400 mb-3'>{product.vendor}</p>
+      <h2 className='text-3xl font-semibold capitalize'>{product.title}</h2>
+      <span className='py-6'>
+        {formatter.format(product.variants.edges[0].node.priceV2.amount)} USD
       </span>
-      {product.options.map(({ name, values }) => (
+      {/* {product.options.map(({ name, values }) => (
         <ProductOptions
           key={`key-${name}`}
           name={name}
@@ -101,13 +104,13 @@ export default function ProductForm({ product }) {
           productInventory={productInventory}
           available={available}
         />
-      ))}
+      ))} */}
       {available ? (
         <button
           onClick={() => {
             addToCart(selectedVariant);
           }}
-          className='px-2 py-3 mt-3 text-white bg-sky-900 rounded-lg hover:bg-gray-800'>
+          className='px-4 py-3 mt-3 text-sky-800 rounded-lg border-[1px] border-sky-800 hover:bg-sky-900 hover:text-white'>
           Add To Card
         </button>
       ) : (
