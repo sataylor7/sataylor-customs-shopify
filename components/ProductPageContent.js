@@ -66,7 +66,7 @@ export default function ProductPageContent({ product }) {
                 <Disclosure
                   as='div'
                   className='border-b-[1px] border-slate-200 pb-2'>
-                  <Disclosure.Button className='py-2 flex items-center items-center w-full justify-between'>
+                  <Disclosure.Button className='py-2 flex items-center w-full justify-between'>
                     Care Instructions{' '}
                     <HiChevronDown className='ui-open:rotate-180 ui-open:transform' />
                   </Disclosure.Button>
