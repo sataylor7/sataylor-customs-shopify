@@ -27,7 +27,7 @@ export default function ProductPageContent({ product }) {
   console.log(products);
   return (
     <div className='flex flex-col gap-y-8 justify-center'>
-      <div className='flex flex-col items-center justify-center w-full max-w-6xl mx-auto space-y-8 md:flex-row md:items-start md:space-y-0 md:space-x-4 lg:space-x-8 mb-14'>
+      <div className='flex flex-col items-center justify-center w-full max-w-6xl mx-auto space-y-8 md:flex-row md:items-start md:space-y-0 md:space-x-4 lg:space-x-8 mb-8'>
         <div className='w-full max-w-md  bg-white border shadow-lg rounded-2xl grow'>
           <div className='relative w-full h-96 md:h-[500px]'>
             <Swiper
@@ -106,11 +106,42 @@ export default function ProductPageContent({ product }) {
         </div>
       </div>
       {/** SHIPPING / RETURNS / REFUNDS */}
-      <div className='flex flex-col md:flex-row gap-2 w-full max-w-screen-xl mx-auto mt-10 text-slate-700'>
-        <div className='grow md:mr-2 flex flex-col gap-y-3 md:border-r-[1px] md:border-slate-100'>
+      <div className='flex flex-col md:flex-row gap-2 w-full max-w-screen-xl mx-auto  text-slate-700'>
+        <div className='grow md:mr-2 flex flex-col gap-y-3 md:border-r-[1px] md:border-slate-100 p-4'>
+          <h4 className='text-lg font-normal bg-slate-50  p-4'>Shipping</h4>
+          <p className='px-4 mt-2'>
+            <span className='block'>Ships from: </span>
+            <span className='font-semibold'>Texas</span>
+          </p>
+          <p className='px-4 mt-2'>
+            <span className='block'>Countries: </span>
+            <span className='font-semibold'>USA only</span>
+          </p>
+          <p className='px-4 mt-2'>
+            <span className='block'>Shipping Info: </span>
+            <span className='font-semibold'>
+              Free shipping on orders over $50
+            </span>
+          </p>
+          <p className='px-4 mt-2'>
+            <span className='block'>Shipping Options: </span>
+            <span className='font-semibold block'>
+              Economy | 5-8 business days
+            </span>
+            <span className='font-semibold'>Standard | 3-4 business days</span>
+          </p>
+        </div>
+
+        <div className='w-full md:w-1/2'>
           <div className='p-4'>
-            <h4 className='text-lg font-normal bg-slate-50  p-4'>Shipping</h4>
-            <p className='px-4 mt-2'>Information on the shipping</p>
+            <h4 className='text-lg font-normal bg-slate-50  p-4'>
+              30 Day Guarantee
+            </h4>
+            <p className='px-4 mt-2'>
+              Information on the guarantee, any natural rips, tears, breaks,
+              hardware malfunction have a 30 day repair guarantee. If the repair
+              cannot be made for any reason then a new item will be made.
+            </p>
           </div>
           <div className='p-4'>
             <h4 className='text-lg font-normal bg-slate-50  p-4'>
@@ -120,17 +151,6 @@ export default function ProductPageContent({ product }) {
               Due to the nature of our services there are no refunds or returns.
             </p>
           </div>
-        </div>
-
-        <div className='w-full md:w-1/2'>
-          <h4 className='text-lg font-normal bg-slate-50  p-4'>
-            30 Day Guarantee
-          </h4>
-          <p className='px-4 mt-2'>
-            Information on the guarantee, any natural rips, tears, breaks,
-            hardware malfunction have a 30 day repair guarantee. If the repair
-            cannot be made for any reason then a new item will be made.
-          </p>
         </div>
       </div>
       {products && products.length > 1 && (
