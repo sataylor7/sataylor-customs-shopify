@@ -122,7 +122,7 @@ export default function ProductPageContent({ product }) {
           </div>
         </div>
 
-        <div className='w-1/2'>
+        <div className='w-full md:w-1/2'>
           <h4 className='text-lg font-normal bg-slate-50  p-4'>
             30 Day Guarantee
           </h4>
