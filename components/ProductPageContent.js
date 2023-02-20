@@ -53,7 +53,7 @@ export default function ProductPageContent({ product }) {
         </div>
         <div className='flex flex-col  w-full md:w-2/5'>
           <ProductForm product={product} />
-          <p className='w-11/12 max-w-3xl py-4 mx-auto space-y-8 md:space-x-4 lg:space-x-8 border-b-[1px] border-slate-200'>
+          <p className='w-11/12 max-w-3xl py-4 mx-auto space-y-8 md:space-x-4 lg:space-x-8'>
             {product.description}
           </p>
           {product.materials || product.careInstructions ? (
@@ -64,9 +64,7 @@ export default function ProductPageContent({ product }) {
                   Handmade Item
                 </div>
               </div>
-              <Disclosure
-                as='div'
-                className='border-b-[1px] border-slate-200 pb-2'>
+              <Disclosure as='div' className='border-b-[1px] border-slate-200'>
                 <Disclosure.Button className='py-2 flex items-center w-full justify-between'>
                   <div className='flex items-center gap-1'>
                     <HiTruck />
@@ -82,7 +80,7 @@ export default function ProductPageContent({ product }) {
               {product.materials && (
                 <Disclosure
                   as='div'
-                  className='border-b-[1px] border-slate-200 pb-2'>
+                  className='border-b-[1px] border-slate-200'>
                   <Disclosure.Button className='py-2 flex items-center w-full justify-between'>
                     <div className='flex items-center gap-1'>
                       <HiScissors />
@@ -99,7 +97,7 @@ export default function ProductPageContent({ product }) {
               {product.careInstructions && (
                 <Disclosure
                   as='div'
-                  className='border-b-[1px] border-slate-200 pb-2'>
+                  className='border-b-[1px] border-slate-200'>
                   <Disclosure.Button className='py-2 flex items-center w-full justify-between'>
                     <div className='flex items-center gap-1'>
                       <HiOutlineBookOpen />
@@ -177,7 +175,14 @@ export default function ProductPageContent({ product }) {
               Returns | Refunds
             </h4>
             <p className='px-4 mt-2'>
-              Due to the nature of our services there are no refunds or returns.
+              Due to the nature of our services there are no refunds or returns
+              for our custom orders.
+            </p>
+            <p className='px-4 mt-2'>
+              For our ready made order refund policy{' '}
+              <a href='#' target='_blank' rel='noreferrer'>
+                click here
+              </a>
             </p>
           </div>
         </div>
