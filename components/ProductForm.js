@@ -111,7 +111,7 @@ export default function ProductForm({ product }) {
             addToCart(selectedVariant);
           }}
           className='px-4 py-3 mt-3 bg-sky-800 rounded-lg  hover:bg-sky-900 text-white'>
-          Add To Card
+          Add To Cart
         </button>
       ) : (
         <button className='px-2 py-3 mt-3 text-slate-800 border-[1px] border-slate-800 rounded-lg cursor-not-allowed'>
