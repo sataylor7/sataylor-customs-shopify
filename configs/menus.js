@@ -51,7 +51,7 @@ const footerLinks = [
     children: [
       {
         id: 0,
-        link: '#',
+        link: '/privacy-policy',
         value: 'Privacy Policy',
       },
       {
