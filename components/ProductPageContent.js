@@ -4,7 +4,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import RecommendedList from './RecommendedList';
 import { Disclosure } from '@headlessui/react';
-import { HiChevronDown, HiScissors, HiOutlineBookOpen } from 'react-icons/hi';
+import {
+  HiChevronDown,
+  HiScissors,
+  HiOutlineBookOpen,
+  HiOutlineGift,
+  HiOutlineTruck,
+  HiTruck,
+} from 'react-icons/hi';
 
 export default function ProductPageContent({ product }) {
   const images = [];
@@ -51,6 +58,27 @@ export default function ProductPageContent({ product }) {
           </p>
           {product.materials || product.careInstructions ? (
             <div className='p-4'>
+              <div className='border-b-[1px] border-slate-200 pb-2'>
+                <div className='flex items-center gap-1'>
+                  <HiOutlineGift />
+                  Handmade Item
+                </div>
+              </div>
+              <Disclosure
+                as='div'
+                className='border-b-[1px] border-slate-200 pb-2'>
+                <Disclosure.Button className='py-2 flex items-center w-full justify-between'>
+                  <div className='flex items-center gap-1'>
+                    <HiTruck />
+                    Shipping
+                  </div>
+
+                  <HiChevronDown className='ui-open:rotate-180 ui-open:transform' />
+                </Disclosure.Button>
+                <Disclosure.Panel className='text-gray-500'>
+                  Only ships to the United States from Dallas, Texas
+                </Disclosure.Panel>
+              </Disclosure>
               {product.materials && (
                 <Disclosure
                   as='div'
@@ -63,7 +91,7 @@ export default function ProductPageContent({ product }) {
 
                     <HiChevronDown className='ui-open:rotate-180 ui-open:transform' />
                   </Disclosure.Button>
-                  <Disclosure.Panel className='text-gray-500'>
+                  <Disclosure.Panel className='text-gray-500 whitespace-pre-line'>
                     {product.materials.value}
                   </Disclosure.Panel>
                 </Disclosure>
@@ -123,13 +151,13 @@ export default function ProductPageContent({ product }) {
               Free shipping on orders over $50
             </span>
           </p>
-          <p className='px-4 mt-2'>
+          {/* <p className='px-4 mt-2'>
             <span className='block'>Shipping Options: </span>
             <span className='font-semibold block'>
               Economy | 5-8 business days
             </span>
             <span className='font-semibold'>Standard | 3-4 business days</span>
-          </p>
+          </p> */}
         </div>
 
         <div className='w-full md:w-1/2'>
