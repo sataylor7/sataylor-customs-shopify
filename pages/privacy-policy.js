@@ -14,8 +14,8 @@ export default function PrivacyPolicy() {
       <p>
         After reviewing this policy, if you have additional questions, want more
         information about our privacy practices, or would like to make a
-        complaint, please contact us by e-mail at sales@ruleoclothing.com or by
-        mail using the details provided below:
+        complaint, please contact us by e-mail at sataylorcustoms@gmail.com or
+        by mail using the details provided below:
       </p>
       <p></p>
       <h2 className='text-xl font-semibold border-b-[1px] border-slate-100 pb-2 mb-2'>
