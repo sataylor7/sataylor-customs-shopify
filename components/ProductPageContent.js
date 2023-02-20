@@ -166,9 +166,10 @@ export default function ProductPageContent({ product }) {
               30 Day Guarantee
             </h4>
             <p className='px-4 mt-2'>
-              Information on the guarantee, any natural rips, tears, breaks,
-              hardware malfunction have a 30 day repair guarantee. If the repair
-              cannot be made for any reason then a new item will be made.
+              Please inspect your order upon reception and contact us
+              immediately if the item is defective, damaged or if you receive
+              the wrong item, so that we can evaluate the issue and make it
+              right.
             </p>
           </div>
           <div className='p-4'>
