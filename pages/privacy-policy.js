@@ -4,13 +4,16 @@ export default function PrivacyPolicy() {
   return (
     <div>
       <div className='bg-slate-100'>
-        <p className='text-xl max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8'>
+        <h1 className='text-3xl max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8'>
+          Privacy Policy
+        </h1>
+      </div>
+      <div className='max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8 gap-y-3 flex flex-col'>
+        <p className='text-xl'>
           This Privacy Policy describes how www.sataylorcustoms.com (the “Site”
           or “we”) collects, uses, and discloses your Personal Information when
           you visit or make a purchase from the Site.
         </p>
-      </div>
-      <div className='max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8 gap-y-3 flex flex-col'>
         <h1 className='text-2xl font-semibold border-b-[1px] border-slate-200 pb-2 mb-2'>
           Contact
         </h1>
@@ -27,7 +30,6 @@ export default function PrivacyPolicy() {
           <p>Plano, TX 75093</p>
         </address>
 
-        <p></p>
         <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 mb-2'>
           Collecting Personal Information
         </h2>

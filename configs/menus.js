@@ -56,8 +56,13 @@ const footerLinks = [
       },
       {
         id: 1,
-        link: '#',
-        value: 'Terms & Conditions',
+        link: '/refund-policy',
+        value: 'Refund Policy',
+      },
+      {
+        id: 2,
+        link: '/terms-of-service',
+        value: 'Terms of Service',
       },
     ],
   },
