@@ -264,9 +264,6 @@ export default function PrivacyPolicy() {
           us by e-mail or by mail using the details provided under “Contact”
           above.
         </p>
-        <p>
-          Last updated: <i>2/20/23</i>
-        </p>
       </div>
     </div>
   );
