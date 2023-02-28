@@ -115,7 +115,7 @@ export default function ProductPageContent({ product }) {
         </div>
       </div>
       {/** MAKERS MARK */}
-      <div className='bg-slate-50  p-12 flex items-start max-w-screen-lg mx-auto w-full mt-12 gap-4 justify-between'>
+      {/* <div className='bg-slate-50  p-12 flex items-start max-w-screen-lg mx-auto w-full mt-12 gap-4 justify-between'>
         <div className='flex flex-col'>
           <h3 className='text-lg font-semibold text-slate-600'>Makers Mark</h3>
           <p>Background of the makers mark and the importance</p>
@@ -130,8 +130,9 @@ export default function ProductPageContent({ product }) {
             />
           </div>
         </div>
-      </div>
-      {/** SHIPPING / RETURNS / REFUNDS */}
+      </div> */}
+      <hr className='my-2 border-gray-200' />
+      {/** SHIPPING / RETURNS  */}
       <div className='flex flex-col md:flex-row gap-2 w-full max-w-screen-xl mx-auto  text-slate-700'>
         <div className='grow md:mr-2 flex flex-col gap-y-3 md:border-r-[1px] md:border-slate-100 p-4'>
           <h4 className='text-lg font-normal bg-slate-50  p-4'>Shipping</h4>
@@ -171,16 +172,18 @@ export default function ProductPageContent({ product }) {
             </p>
           </div>
           <div className='p-4'>
-            <h4 className='text-lg font-normal bg-slate-50  p-4'>
-              Returns | Refunds
-            </h4>
+            <h4 className='text-lg font-normal bg-slate-50  p-4'>Returns</h4>
             <p className='px-4 mt-2'>
               Due to the nature of our services there are no refunds or returns
-              for our custom orders.
+              for our custom orders. If your product arrives damaged please
+              reach out to info@sataylorcustoms.com
             </p>
             <p className='px-4 mt-2'>
-              For our ready made order refund policy{' '}
-              <a href='#' target='_blank' rel='noreferrer'>
+              For our ready made order return policy{' '}
+              <a
+                href='/return-policy'
+                target='_blank'
+                rel='noreferrer noopener'>
                 click here
               </a>
             </p>

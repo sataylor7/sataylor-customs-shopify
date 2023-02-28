@@ -126,9 +126,10 @@ export default function TermsOfService() {
           through the website. These products or Services may have limited
           quantities and are subject to return or exchange only according to our{' '}
           <a
-            href='/refund-policy'
+            rel='noreferrer noopener'
+            href='/return-policy'
             className='underline underline-offset-4 text-cyan-700'>
-            Refund Policy
+            Return Policy
           </a>
           .
         </p>
@@ -176,6 +177,8 @@ export default function TermsOfService() {
           For more details, please review our{' '}
           <a
             href='/refund-policy'
+            rel='noreferrer noopener'
+            target='_blank'
             className='underline underline-offset-4 text-cyan-700'>
             Refund Policy
           </a>
@@ -263,6 +266,8 @@ export default function TermsOfService() {
           by our Privacy Policy, which can be viewed{' '}
           <a
             href='/privacy-policy'
+            target='_blank'
+            rel='noreferrer noopener'
             className='underline underline-offset-4 text-cyan-700'>
             here
           </a>
@@ -439,16 +444,8 @@ export default function TermsOfService() {
         </h2>
         <p>
           Questions about the Terms of Service should be sent to us at
-          info@sataylorcustoms.com or sataylorcustoms@gmail.com. <br /> Our
-          contact information is posted below: <br /> SATaylor Customs <br />{' '}
-          info@sataylorcustoms.com or sataylorcustoms@gmail.com
+          info@sataylorcustoms.com or sataylorcustoms@gmail.com.
         </p>
-        <address>
-          <p>P.O.BOX #165</p>
-          <p>5960 W. Parker RD #278-165</p>
-
-          <p>Plano, TX 75093</p>
-        </address>
       </div>
     </div>
   );

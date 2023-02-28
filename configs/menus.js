@@ -56,8 +56,8 @@ const footerLinks = [
       },
       {
         id: 1,
-        link: '/refund-policy',
-        value: 'Refund Policy',
+        link: '/return-policy',
+        value: 'Return Policy',
       },
       {
         id: 2,

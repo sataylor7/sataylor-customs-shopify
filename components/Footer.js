@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from './Logo';
 import { footerLinks, social } from '../configs/menus';
 
 const year = new Date().getUTCFullYear();
@@ -35,6 +36,9 @@ const Footer = () => (
             Create custom, handmade, one of a kind, garments and accessories
             that are uniquely you.
           </p>
+          <div className='mt-4'>
+            <Logo className={'cursor-pointer'} />
+          </div>
         </div>
       </div>
       <hr className='my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8' />
@@ -68,6 +72,7 @@ const Footer = () => (
                   key={index}
                   href={item.link}
                   target='_blank'
+                  rel='noopener noreferrer'
                   className='text-gray-500 hover:text-gray-900 dark:hover:text-white'>
                   <span className='sr-only'>{item.title}</span>
                   {item.icon}
