@@ -108,9 +108,7 @@ export default function ContactUs() {
                 </p>
               </div>
             </div>
-            <div class='mt-6 w-80 md:mt-8'>
-              <h3 class='font-medium text-slate-800'>Follow us</h3>
-
+            <div class='mt-6 w-80 md:mt-8 flex flex-row items-center gap-x-3 '>
               <div class='flex mt-4  '>
                 {social.map((item, index) => (
                   <>
@@ -130,6 +128,7 @@ export default function ContactUs() {
                   </>
                 ))}
               </div>
+              <h3 class='font-medium text-slate-800'>Follow us</h3>
             </div>
           </div>
 
