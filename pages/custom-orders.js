@@ -3,7 +3,6 @@ import { getProductsInCollection } from '../lib/shopify';
 import ProductList from '../components/ProductList';
 
 export default function Customs({ products }) {
-  console.log(products);
   return (
     <div>
       <div className='header-section'>

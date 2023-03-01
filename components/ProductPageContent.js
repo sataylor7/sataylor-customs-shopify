@@ -9,8 +9,9 @@ import {
   HiScissors,
   HiOutlineBookOpen,
   HiOutlineGift,
-  HiOutlineTruck,
+  HiOutlinePencilAlt,
   HiTruck,
+  HiOutlineClipboardCheck,
 } from 'react-icons/hi';
 
 export default function ProductPageContent({ product }) {
@@ -31,7 +32,7 @@ export default function ProductPageContent({ product }) {
 
   SwiperCore.use([Navigation, Pagination]);
   const products = product.collections.edges[0].node.products.edges;
-  console.log(products);
+  console.log('hello there', products, '\n===> product info:', product);
   return (
     <div className='flex flex-col gap-y-8 justify-center'>
       <div className='flex flex-col items-center justify-center w-full max-w-6xl mx-auto space-y-8 md:flex-row md:items-start md:space-y-0 md:space-x-4 lg:space-x-8 mb-8'>
@@ -56,62 +57,74 @@ export default function ProductPageContent({ product }) {
           <p className='w-11/12 max-w-3xl py-4 mx-auto space-y-8 md:space-x-4 lg:space-x-8'>
             {product.description}
           </p>
-          {product.materials || product.careInstructions ? (
-            <div className='p-4'>
-              <div className='border-b-[1px] border-slate-200 pb-2'>
+
+          <div className='p-4'>
+            <div className='border-b-[1px] border-slate-200 pb-2'>
+              <div className='flex items-center gap-1'>
+                <HiOutlineGift />
+                Handmade Item
+              </div>
+            </div>
+            {product.madeToOrder && (
+              <div className='border-b-[1px] border-slate-200 py-2'>
                 <div className='flex items-center gap-1'>
-                  <HiOutlineGift />
-                  Handmade Item
+                  <HiOutlineClipboardCheck />
+                  Made to order
                 </div>
               </div>
+            )}
+            {product.personalize && (
+              <div className='border-b-[1px] border-slate-200 py-2'>
+                <div className='flex items-center gap-1'>
+                  <HiOutlinePencilAlt />
+                  Personalizable
+                </div>
+              </div>
+            )}
+            <Disclosure as='div' className='border-b-[1px] border-slate-200'>
+              <Disclosure.Button className='py-2 flex items-center w-full justify-between'>
+                <div className='flex items-center gap-1'>
+                  <HiTruck />
+                  Shipping
+                </div>
+
+                <HiChevronDown className='ui-open:rotate-180 ui-open:transform' />
+              </Disclosure.Button>
+              <Disclosure.Panel className='text-gray-500'>
+                Only ships to the United States from Dallas, Texas
+              </Disclosure.Panel>
+            </Disclosure>
+
+            {product.materials && (
               <Disclosure as='div' className='border-b-[1px] border-slate-200'>
                 <Disclosure.Button className='py-2 flex items-center w-full justify-between'>
                   <div className='flex items-center gap-1'>
-                    <HiTruck />
-                    Shipping
+                    <HiScissors />
+                    Materials
                   </div>
 
                   <HiChevronDown className='ui-open:rotate-180 ui-open:transform' />
                 </Disclosure.Button>
-                <Disclosure.Panel className='text-gray-500'>
-                  Only ships to the United States from Dallas, Texas
+                <Disclosure.Panel className='text-gray-500 whitespace-pre-line'>
+                  {product.materials.value}
                 </Disclosure.Panel>
               </Disclosure>
-              {product.materials && (
-                <Disclosure
-                  as='div'
-                  className='border-b-[1px] border-slate-200'>
-                  <Disclosure.Button className='py-2 flex items-center w-full justify-between'>
-                    <div className='flex items-center gap-1'>
-                      <HiScissors />
-                      Materials
-                    </div>
-
-                    <HiChevronDown className='ui-open:rotate-180 ui-open:transform' />
-                  </Disclosure.Button>
-                  <Disclosure.Panel className='text-gray-500 whitespace-pre-line'>
-                    {product.materials.value}
-                  </Disclosure.Panel>
-                </Disclosure>
-              )}
-              {product.careInstructions && (
-                <Disclosure
-                  as='div'
-                  className='border-b-[1px] border-slate-200'>
-                  <Disclosure.Button className='py-2 flex items-center w-full justify-between'>
-                    <div className='flex items-center gap-1'>
-                      <HiOutlineBookOpen />
-                      Care Instructions
-                    </div>
-                    <HiChevronDown className='ui-open:rotate-180 ui-open:transform' />
-                  </Disclosure.Button>
-                  <Disclosure.Panel className='text-gray-500'>
-                    {product.careInstructions.value}
-                  </Disclosure.Panel>
-                </Disclosure>
-              )}
-            </div>
-          ) : null}
+            )}
+            {product.careInstructions && (
+              <Disclosure as='div' className='border-b-[1px] border-slate-200'>
+                <Disclosure.Button className='py-2 flex items-center w-full justify-between'>
+                  <div className='flex items-center gap-1'>
+                    <HiOutlineBookOpen />
+                    Care Instructions
+                  </div>
+                  <HiChevronDown className='ui-open:rotate-180 ui-open:transform' />
+                </Disclosure.Button>
+                <Disclosure.Panel className='text-gray-500'>
+                  {product.careInstructions.value}
+                </Disclosure.Panel>
+              </Disclosure>
+            )}
+          </div>
         </div>
       </div>
       {/** MAKERS MARK */}
