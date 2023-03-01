@@ -10,7 +10,7 @@ const Footer = () => (
         <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 md:flex-1'>
           {footerLinks.map((footerLink) => (
             <div key={footerLink.id}>
-              <h3 className='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>
+              <h3 className='mb-6 text-sm font-semibold text-white uppercase'>
                 {footerLink.name}
               </h3>
               <ul>
@@ -19,7 +19,7 @@ const Footer = () => (
                     <a
                       href={child.link}
                       target='_blank'
-                      className='text-gray-600 hover:underline dark:text-gray-400'
+                      className='text-white hover:underline'
                       rel='noreferrer'>
                       {child.value}
                     </a>
@@ -29,7 +29,7 @@ const Footer = () => (
             </div>
           ))}
         </div>
-        <hr className='my-6 border-gray-200 sm:mx-auto dark:border-gray-700 md:hidden' />
+        <hr className='my-6 sm:mx-auto border-gray-700 md:hidden' />
         <div className='text-white flex-1 flex mt-4 md:mt-0 flex-col text-sm'>
           <h3 className='uppercase font-semibold mb-6 '>Our Mission</h3>
           <p>
@@ -41,9 +41,9 @@ const Footer = () => (
           </div>
         </div>
       </div>
-      <hr className='my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8' />
+      <hr className='my-6 sm:mx-auto border-gray-700 lg:my-8' />
       <div className='flex flex-col md:flex-row sm:items-center sm:justify-between'>
-        <span className='mb-6 md:mb-0 text-sm text-gray-500 sm:text-center dark:text-gray-400'>
+        <span className='mb-6 md:mb-0 text-sm text-gray-400 sm:text-center '>
           © {year}{' '}
           <a
             href='#'
@@ -54,7 +54,7 @@ const Footer = () => (
           </a>{' '}
           All Rights Reserved.
         </span>
-        <span className='text-sm text-gray-500 sm:text-center dark:text-gray-400'>
+        <span className='text-sm text-gray-400 sm:text-center'>
           Build | Design &bull;&nbsp;
           <a
             href='#'
@@ -73,7 +73,7 @@ const Footer = () => (
                   href={item.link}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='text-gray-500 hover:text-gray-900 dark:hover:text-white'>
+                  className='text-gray-500 hover:text-white'>
                   <span className='sr-only'>{item.title}</span>
                   {item.icon}
                 </a>
