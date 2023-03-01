@@ -50,8 +50,6 @@ export default function ProductForm({ product }) {
     defaultValues[item.name] = item.values[0];
   });
 
-  console.log(product);
-
   const [selectedVariant, setSelectedVariant] = useState(allVariantOptions[0]);
   const [selectedOptions, setSelectedOptions] = useState(defaultValues);
 
