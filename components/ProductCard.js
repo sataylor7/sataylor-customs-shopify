@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
     <Link href={`/products/${handle}`}>
       <div className='w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl'>
         <a className='group'>
-          <div className='w-full overflow-hidden bg-gray-200 rounded-3xl'>
+          <div className='w-full overflow-hidden bg-gray-200 rounded-t-3xl'>
             <div className='relative group-hover:opacity-75 h-72'>
               <Image src={url} alt={altText} layout='fill' objectFit='cover' />
             </div>

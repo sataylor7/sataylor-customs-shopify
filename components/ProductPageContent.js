@@ -191,7 +191,10 @@ export default function ProductPageContent({ product }) {
         </div>
       </div>
       {products && products.length > 1 && (
-        <RecommendedList current={product.id} products={products} />
+        <>
+          <hr className='mt-2 border-gray-200' />
+          <RecommendedList current={product.id} products={products} />
+        </>
       )}
     </div>
   );

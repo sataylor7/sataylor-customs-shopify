@@ -127,8 +127,8 @@ const headerLinks = [
   },
   {
     id: 2,
-    pathname: '/',
-    title: 'Custom Order',
+    pathname: '/custom-orders',
+    title: 'Custom Orders',
   },
 ];
 
