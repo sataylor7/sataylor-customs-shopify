@@ -3,15 +3,11 @@ import React from 'react';
 export default function TermsOfService() {
   return (
     <div>
-      <div className='bg-slate-100'>
-        <h1 className='text-3xl max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8'>
-          Terms of Service
-        </h1>
+      <div className='header-section'>
+        <h1>Terms of Service</h1>
       </div>
-      <div className='max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8 gap-y-4 flex flex-col'>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 mb-2'>
-          OVERVIEW
-        </h2>
+      <div className='wrapper'>
+        <h2 className='policies-headers'>OVERVIEW</h2>
         <p>
           This website is operated by SATaylor Customs. Throughout the site, the
           terms “we”, “us” and “our” refer to SATaylor Customs. SATaylor Customs
@@ -51,7 +47,7 @@ export default function TermsOfService() {
           e-commerce platform that allows us to sell our products and Services
           to you.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
+        <h2 className='policies-headers my-2'>
           SECTION 1 - ONLINE STORE TERMS
         </h2>
         <p>
@@ -71,7 +67,7 @@ export default function TermsOfService() {
           destructive nature. <br /> A breach or violation of any of the Terms
           will result in an immediate termination of your Services.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
+        <h2 className='policies-headers my-2'>
           SECTION 2 - GENERAL CONDITIONS
         </h2>
         <p>
@@ -88,7 +84,7 @@ export default function TermsOfService() {
           The headings used in this agreement are included for convenience only
           and will not limit or otherwise affect these Terms.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
+        <h2 className='policies-headers my-2'>
           SECTION 3 - ACCURACY, COMPLETENESS AND TIMELINESS OF INFORMATION
         </h2>
         <p>
@@ -108,7 +104,7 @@ export default function TermsOfService() {
           on our site. You agree that it is your responsibility to monitor
           changes to our site.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
+        <h2 className='policies-headers my-2'>
           SECTION 4 - MODIFICATIONS TO THE SERVICE AND PRICES
         </h2>
         <p>
@@ -118,7 +114,7 @@ export default function TermsOfService() {
           shall not be liable to you or to any third-party for any modification,
           price change, suspension or discontinuance of the Service.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
+        <h2 className='policies-headers my-2'>
           SECTION 5 - PRODUCTS OR SERVICES (if applicable)
         </h2>
         <p>
@@ -153,7 +149,7 @@ export default function TermsOfService() {
           your expectations, or that any errors in the Service will be
           corrected.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
+        <h2 className='policies-headers my-2'>
           SECTION 6 - ACCURACY OF BILLING AND ACCOUNT INFORMATION
         </h2>
         <p>
@@ -184,9 +180,7 @@ export default function TermsOfService() {
           </a>
           .
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
-          SECTION 7 - OPTIONAL TOOLS
-        </h2>
+        <h2 className='policies-headers my-2'>SECTION 7 - OPTIONAL TOOLS</h2>
         <p>
           We may provide you with access to third-party tools over which we
           neither monitor nor have any control nor input. <br /> You acknowledge
@@ -205,9 +199,7 @@ export default function TermsOfService() {
           (including the release of new tools and resources). Such new features
           and/or Services shall also be subject to these Terms of Service.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
-          SECTION 8 - THIRD-PARTY LINKS
-        </h2>
+        <h2 className='policies-headers my-2'>SECTION 8 - THIRD-PARTY LINKS</h2>
         <p>
           Certain content, products and Services available via our Service may
           include materials from third-parties. <br /> Third-party links on this
@@ -226,7 +218,7 @@ export default function TermsOfService() {
           claims, concerns, or questions regarding third-party products should
           be directed to the third-party.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
+        <h2 className='policies-headers my-2'>
           SECTION 9 - USER COMMENTS, FEEDBACK AND OTHER SUBMISSIONS
         </h2>
         <p>
@@ -258,7 +250,7 @@ export default function TermsOfService() {
           responsibility and assume no liability for any comments posted by you
           or any third-party.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
+        <h2 className='policies-headers my-2'>
           SECTION 10 - PERSONAL INFORMATION
         </h2>
         <p>
@@ -273,7 +265,7 @@ export default function TermsOfService() {
           </a>
           .
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
+        <h2 className='policies-headers my-2'>
           SECTION 11 - ERRORS, INACCURACIES AND OMISSIONS
         </h2>
         <p>
@@ -294,9 +286,7 @@ export default function TermsOfService() {
           be taken to indicate that all information in the Service or on any
           related website has been modified or updated.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
-          SECTION 12 - PROHIBITED USES
-        </h2>
+        <h2 className='policies-headers my-2'>SECTION 12 - PROHIBITED USES</h2>
         <p>
           In addition to other prohibitions as set forth in the Terms of
           Service, you are prohibited from using the site or its content&#58;
@@ -319,7 +309,7 @@ export default function TermsOfService() {
           reserve the right to terminate your use of the Service or any related
           website for violating any of the prohibited uses.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
+        <h2 className='policies-headers my-2'>
           SECTION 13 - DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY
         </h2>
         <p>
@@ -358,9 +348,7 @@ export default function TermsOfService() {
           incidental damages, in such states or jurisdictions, our liability
           shall be limited to the maximum extent permitted by law.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
-          SECTION 14 - INDEMNIFICATION
-        </h2>
+        <h2 className='policies-headers my-2'>SECTION 14 - INDEMNIFICATION</h2>
         <p>
           You agree to indemnify, defend and hold harmless SATaylor Customs and
           our parent, subsidiaries, affiliates, partners, officers, directors,
@@ -371,9 +359,7 @@ export default function TermsOfService() {
           documents they incorporate by reference, or your violation of any law
           or the rights of a third-party.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
-          SECTION 15 - SEVERABILITY
-        </h2>
+        <h2 className='policies-headers my-2'>SECTION 15 - SEVERABILITY</h2>
         <p>
           In the event that any provision of these Terms of Service is
           determined to be unlawful, void or unenforceable, such provision shall
@@ -383,9 +369,7 @@ export default function TermsOfService() {
           affect the validity and enforceability of any other remaining
           provisions.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
-          SECTION 16 - TERMINATION
-        </h2>
+        <h2 className='policies-headers my-2'>SECTION 16 - TERMINATION</h2>
         <p>
           The obligations and liabilities of the parties incurred prior to the
           termination date shall survive the termination of this agreement for
@@ -402,9 +386,7 @@ export default function TermsOfService() {
           termination; and/or accordingly may deny you access to our Services
           (or any part thereof).
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
-          SECTION 17 - ENTIRE AGREEMENT
-        </h2>
+        <h2 className='policies-headers my-2'>SECTION 17 - ENTIRE AGREEMENT</h2>
         <p>
           The failure of us to exercise or enforce any right or provision of
           these Terms of Service shall not constitute a waiver of such right or
@@ -418,15 +400,13 @@ export default function TermsOfService() {
           interpretation of these Terms of Service shall not be construed
           against the drafting party.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
-          SECTION 18 - GOVERNING LAW
-        </h2>
+        <h2 className='policies-headers my-2'>SECTION 18 - GOVERNING LAW</h2>
         <p>
           These Terms of Service and any separate agreements whereby we provide
           you Services shall be governed by and construed in accordance with the
           laws of United States.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-2'>
+        <h2 className='policies-headers my-2'>
           SECTION 19 - CHANGES TO TERMS OF SERVICE
         </h2>
         <p>

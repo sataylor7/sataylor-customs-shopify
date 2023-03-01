@@ -3,20 +3,16 @@ import React from 'react';
 export default function PrivacyPolicy() {
   return (
     <div>
-      <div className='bg-slate-100'>
-        <h1 className='text-3xl max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8'>
-          Privacy Policy
-        </h1>
+      <div className='header-section'>
+        <h1>Privacy Policy</h1>
       </div>
-      <div className='max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8 gap-y-3 flex flex-col'>
+      <div className='wrapper'>
         <p className='text-xl'>
           This Privacy Policy describes how www.sataylorcustoms.com (the “Site”
           or “we”) collects, uses, and discloses your Personal Information when
           you visit or make a purchase from the Site.
         </p>
-        <h1 className='text-2xl font-semibold border-b-[1px] border-slate-200 pb-2 mb-2'>
-          Contact
-        </h1>
+        <h2 className='policies-main-header policies-headers'>Contact</h2>
         <p>
           After reviewing this policy, if you have additional questions, want
           more information about our privacy practices, or would like to make a
@@ -30,9 +26,7 @@ export default function PrivacyPolicy() {
           <p>Plano, TX 75093</p>
         </address>
 
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 mb-2'>
-          Collecting Personal Information
-        </h2>
+        <h2 className='policies-headers'>Collecting Personal Information</h2>
         <p>
           When you visit the Site, we collect certain information about your
           device, your interaction with the Site, and information necessary to
@@ -90,9 +84,7 @@ export default function PrivacyPolicy() {
             card numbers), email address, and phone number.
           </li>
         </ul>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-4'>
-          Sharing Personal Information
-        </h2>
+        <h2 className='policies-headers'>Sharing Personal Information</h2>
         <p>
           We share your Personal Information with service providers to help us
           provide our services and fulfill our contracts with you, as described
@@ -114,9 +106,7 @@ export default function PrivacyPolicy() {
             protect our rights.
           </li>
         </ul>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-4'>
-          Behavioral Advertising
-        </h2>
+        <h2 className='policies-headers'>Behavioral Advertising</h2>
         <p>
           As described above, we use your Personal Information to provide you
           with targeted advertisements or marketing communications we believe
@@ -166,18 +156,14 @@ export default function PrivacyPolicy() {
           </a>
           .
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-4'>
-          Using Personal Information
-        </h2>
+        <h2 className='policies-headers'>Using Personal Information</h2>
         <p>
           We use your personal Information to provide our services to you, which
           includes: offering products for sale, processing payments, shipping
           and fulfillment of your order, and keeping you up to date on new
           products, services, and offers.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-4'>
-          Cookies
-        </h2>
+        <h2 className='policies-headers'>Cookies</h2>
         <p>
           A cookie is a small amount of information that’s downloaded to your
           computer or device when you visit our Site. We use a number of
@@ -239,26 +225,20 @@ export default function PrivacyPolicy() {
           uses of your information by these parties, please follow the
           instructions in the “Behavioral Advertising” section above.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-4'>
-          Do Not Track
-        </h2>
+        <h2 className='policies-headers'>Do Not Track</h2>
         <p>
           Please note that because there is no consistent industry understanding
           of how to respond to “Do Not Track” signals, we do not alter our data
           collection and usage practices when we detect such a signal from your
           browser.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-4'>
-          Changes
-        </h2>
+        <h2 className='policies-headers'>Changes</h2>
         <p>
           We may update this Privacy Policy from time to time in order to
           reflect, for example, changes to our practices or for other
           operational, legal, or regulatory reasons.
         </p>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 my-4'>
-          Complaints
-        </h2>
+        <h2 className='policies-headers'>Complaints</h2>
         <p>
           As noted above, if you would like to make a complaint, please contact
           us by e-mail or by mail using the details provided under “Contact”

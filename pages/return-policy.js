@@ -9,10 +9,8 @@ export default function RefundPolicy() {
           <h2 className='text-sm uppercase'>(For non custom orders only)</h2>
         </div>
       </div>
-      <div className='max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8 gap-y-4 flex flex-col'>
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 mb-2 uppercase'>
-          Returns
-        </h2>
+      <div className='wrapper'>
+        <h2 className='policies-headers uppercase'>Returns</h2>
         <p>
           S.A.Taylor Customs handmade items are backed by a limited one-year
           warranty. Any damage not caused by normal wear and tear or negligence
@@ -30,9 +28,7 @@ export default function RefundPolicy() {
           package is not located.
         </p>
 
-        <h2 className='text-xl font-semibold border-b-[1px] border-slate-200 pb-2 mb-2 uppercase'>
-          Shipping
-        </h2>
+        <h2 className='policies-headers uppercase'>Shipping</h2>
         <p>To return your product, you should mail your product to:</p>
         <address>
           <p>P.O.BOX #165</p>

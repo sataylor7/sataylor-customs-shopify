@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .wrapper {
+    @apply max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8 gap-y-3 flex flex-col;
+  }
+  .header-section {
+    @apply bg-slate-100;
+  }
+  .header-section h1 {
+    @apply text-3xl max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8;
+  }
+  .policies-main-header {
+    @apply text-2xl;
+  }
+  .policies-headers {
+    @apply font-semibold border-b-[1px] border-slate-200 pb-2 mb-2;
+  }
+}
