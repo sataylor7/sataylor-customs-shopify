@@ -24,7 +24,7 @@ const footerLinks = [
       },
       {
         id: 2,
-        link: '#',
+        link: '/contact-us',
         value: 'Contact',
       },
     ],
