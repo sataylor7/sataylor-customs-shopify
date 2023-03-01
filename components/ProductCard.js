@@ -25,16 +25,21 @@ const ProductCard = ({ product }) => {
               {title}
             </p>
             <div className='flex items-center justify-between'>
-              <p className='text-lg font-semibold text-black cursor-auto my-3'>
-                {formatter.format(price)}
-              </p>
-              {!availableForSale && !previousCustomOrder && (
-                <div className='bg-slate-400 text-white rounded-lg px-4 py-3'>
-                  Sold out
-                </div>
+              {!previousCustomOrder && (
+                <>
+                  <p className='text-lg font-semibold text-black cursor-auto my-3'>
+                    {formatter.format(price)}
+                  </p>
+                  {!availableForSale && (
+                    <div className='bg-slate-400 text-white rounded-lg px-4 py-3'>
+                      Sold out
+                    </div>
+                  )}
+                </>
               )}
+
               {previousCustomOrder && (
-                <div className='bg-sky-700 text-white rounded-lg px-4 py-3'>
+                <div className='bg-sky-700 text-white rounded-lg px-3 py-2'>
                   Inquire
                 </div>
               )}

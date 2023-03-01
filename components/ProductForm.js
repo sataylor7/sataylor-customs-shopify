@@ -91,6 +91,7 @@ export default function ProductForm({ product }) {
       <p className='uppercase text-sm text-slate-400 mb-3'>{product.vendor}</p>
       <h2 className='text-3xl font-semibold capitalize'>{product.title}</h2>
       <span className='py-6'>
+        {product.previousCustomOrder && <>Starting at: </>}
         {formatter.format(product.variants.edges[0].node.priceV2.amount)} USD
       </span>
       {/* {product.options.map(({ name, values }) => (
