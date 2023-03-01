@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { formatter } from '../utils/helpers';
 
 const ProductCard = ({ product }) => {
-  const { handle, title, availableForSale } = product.node;
+  const { handle, title, availableForSale, previousCustomOrder } = product.node;
 
   const { altText, url } = product.node.images.edges[0].node;
 
@@ -28,9 +28,14 @@ const ProductCard = ({ product }) => {
               <p className='text-lg font-semibold text-black cursor-auto my-3'>
                 {formatter.format(price)}
               </p>
-              {!availableForSale && (
+              {!availableForSale && !previousCustomOrder && (
                 <div className='bg-slate-400 text-white rounded-lg px-4 py-3'>
                   Sold out
+                </div>
+              )}
+              {previousCustomOrder && (
+                <div className='bg-sky-700 text-white rounded-lg px-4 py-3'>
+                  Inquire
                 </div>
               )}
             </div>

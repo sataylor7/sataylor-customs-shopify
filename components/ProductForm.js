@@ -116,7 +116,7 @@ export default function ProductForm({ product }) {
       ) : product.previousCustomOrder ? (
         <div className='font-medium text-sky-700'>
           <a href='#' className='underline underline-offset-4'>
-            Interested in designing your own? Enquire here
+            Interested in designing your own? Inquire here
           </a>
         </div>
       ) : (
