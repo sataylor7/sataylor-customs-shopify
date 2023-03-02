@@ -57,6 +57,12 @@ export default function ProductPageContent({ product }) {
           <p className='w-11/12 max-w-3xl py-4 mx-auto space-y-8 md:space-x-4 lg:space-x-8'>
             {product.description}
           </p>
+          {!product.previousCustomOrder && (
+            <span className='w-11/12 max-w-3xl py-4 mx-auto space-y-8 md:space-x-4 lg:space-x-8 text-sm font-medium'>
+              * If the product is out of stock and you're interesting in
+              designing your own feel free to contact us *
+            </span>
+          )}
 
           <div className='p-4'>
             <div className='border-b-[1px] border-slate-200 pb-2'>

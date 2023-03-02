@@ -92,7 +92,7 @@ export default function ProductForm({ product }) {
         {product.previousCustomOrder && <>Starting at: </>}
         {formatter.format(product.variants.edges[0].node.priceV2.amount)} USD
       </span>
-      {/* {product.options.map(({ name, values }) => (
+      {product.options.map(({ name, values }) => (
         <ProductOptions
           key={`key-${name}`}
           name={name}
@@ -103,7 +103,7 @@ export default function ProductForm({ product }) {
           productInventory={productInventory}
           available={available}
         />
-      ))} */}
+      ))}
       {available ? (
         <button
           onClick={() => {
