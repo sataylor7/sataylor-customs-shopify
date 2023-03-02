@@ -92,18 +92,22 @@ export default function ProductForm({ product }) {
         {product.previousCustomOrder && <>Starting at: </>}
         {formatter.format(product.variants.edges[0].node.priceV2.amount)} USD
       </span>
-      {product.options.map(({ name, values }) => (
-        <ProductOptions
-          key={`key-${name}`}
-          name={name}
-          values={values}
-          selectedOptions={selectedOptions}
-          setOptions={setOptions}
-          selectedVariant={selectedVariant}
-          productInventory={productInventory}
-          available={available}
-        />
-      ))}
+      {product.options.map(({ name, values }) => {
+        if (name !== 'Title') {
+          return (
+            <ProductOptions
+              key={`key-${name}`}
+              name={name}
+              values={values}
+              selectedOptions={selectedOptions}
+              setOptions={setOptions}
+              selectedVariant={selectedVariant}
+              productInventory={productInventory}
+              available={available}
+            />
+          );
+        }
+      })}
       {available ? (
         <button
           onClick={() => {
