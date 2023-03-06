@@ -108,7 +108,7 @@ export default function ProductForm({ product }) {
           );
         }
       })}
-      {available ? (
+      {available && !product.previousCustomOrder && (
         <button
           onClick={() => {
             addToCart(selectedVariant);
@@ -116,13 +116,15 @@ export default function ProductForm({ product }) {
           className='px-4 py-3 mt-3 bg-sky-800 rounded-lg  hover:bg-sky-900 text-white'>
           Add To Cart
         </button>
-      ) : product.previousCustomOrder ? (
+      )}
+      {product.previousCustomOrder && (
         <div className='font-medium text-sky-700'>
           <a href='#' className='underline underline-offset-4'>
             Interested in designing your own? Inquire here
           </a>
         </div>
-      ) : (
+      )}
+      {!available && !product.previousCustomOrder && (
         <button className='px-2 py-3 mt-3 text-slate-800 border-[1px] border-slate-800 rounded-lg cursor-not-allowed'>
           Sold out!
         </button>
