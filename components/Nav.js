@@ -5,7 +5,7 @@ import MiniCart from './MiniCart';
 import { headerLinks } from '../configs/menus';
 import Logo from './Logo';
 import { useScrollDirection } from '../hooks/useScrollDirection';
-import { HiOutlineShoppingBag } from 'react-icons/hi';
+import { HiOutlineShoppingBag, HiOutlineUser } from 'react-icons/hi';
 
 export default function Nav() {
   const [navbar, setNavbar] = useState(false);
@@ -68,7 +68,10 @@ export default function Nav() {
           </div>
         </div>
 
-        <div className='flex items-center md:order-3'>
+        <div className='flex items-center md:order-3 gap-x-2'>
+          <a href='/login'>
+            <HiOutlineUser />
+          </a>
           <a
             className='text-md font-semibold text-m cursor-pointer flex items-center gap-2 relative'
             onClick={() => setCartOpen(!cartOpen)}>
