@@ -6,6 +6,7 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import Layout from '../components/Layout';
 import ShopProvider from '../context/shopContext';
+import AuthProvider from '../context/AuthContext';
 import { ToastProvider } from '../context/ToastContext';
 import ToastContainer from '../components/ToastContainer';
 
@@ -16,12 +17,14 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ShopProvider>
-      <ToastProvider>
-        <Layout>
-          <Component {...pageProps} key={router.asPath} />
-        </Layout>
-        <ToastContainer />
-      </ToastProvider>
+      <AuthProvider>
+        <ToastProvider>
+          <Layout>
+            <Component {...pageProps} key={router.asPath} />
+          </Layout>
+          <ToastContainer />
+        </ToastProvider>
+      </AuthProvider>
     </ShopProvider>
   );
 }

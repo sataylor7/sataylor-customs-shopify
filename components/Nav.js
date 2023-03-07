@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useContext, useState } from 'react';
 import { CartContext } from '../context/shopContext';
+import { AuthContext } from '../context/AuthContext';
 import MiniCart from './MiniCart';
 import { headerLinks } from '../configs/menus';
 import Logo from './Logo';
@@ -10,6 +11,7 @@ import { HiOutlineShoppingBag, HiOutlineUser } from 'react-icons/hi';
 export default function Nav() {
   const [navbar, setNavbar] = useState(false);
   const { cart, cartOpen, setCartOpen } = useContext(CartContext);
+  const { customer } = useContext(AuthContext);
   const scrollDirection = useScrollDirection();
 
   let cartQuantity = 0;
@@ -69,7 +71,10 @@ export default function Nav() {
         </div>
 
         <div className='flex items-center md:order-3 gap-x-2'>
-          <a href='/login'>
+          <a
+            href={`${
+              customer && customer.customerAccessToken ? '/profile' : '/login'
+            }`}>
             <HiOutlineUser />
           </a>
           <a
