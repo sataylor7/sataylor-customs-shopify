@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 import { AuthContext } from '@/context/AuthContext';
-import { createCustomer } from '@/lib/shopify';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -34,10 +33,6 @@ export default function SignUpForm() {
   const { errors } = formState;
 
   async function onSubmitForm({ email, firstName, lastName, password }) {
-    console.log(email, firstName, lastName, password);
-
-    //toast('warning', 'This will be implemented shortly');
-
     try {
       const { message } = await signup({
         email,
@@ -52,9 +47,14 @@ export default function SignUpForm() {
           'success',
           "Your account has been activated and you've been logged in"
         );
+        // check if there is a weburl then call shopify api to update the order with the customer
+        // think about adding the shipping address form
         router.push('/profile');
       }
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+      toast('error', 'There was an error please contact support');
+    }
   }
   return (
     <>

@@ -1,10 +1,15 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import { useRouter } from 'next/router';
+import { AuthContext } from '@/context/AuthContext';
+import Orders from '@/components/auth/Orders';
+import { useToast } from '@/hooks/useToast';
 
 export default function Profile() {
-  const { customer } = useContext(AuthContext);
+  const { customer, logout } = useContext(AuthContext);
+  const router = useRouter();
+  const toast = useToast();
 
-  if (!customer || !customer.customerAccessToken) {
+  if (!customer || !customer.token) {
     return (
       <section>
         <div className='wrapper'>
@@ -20,19 +25,35 @@ export default function Profile() {
       </section>
     );
   }
-
-  console.log(customer);
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    const loggedOut = await logout();
+    if (loggedOut.message === 'ok') {
+      toast('success', 'You have been logged out');
+      router.push('/');
+    }
+  };
 
   return (
     <section className='bg-white'>
       <div className='bg-slate-100 py-4'>
-        <div className='max-w-2xl mx-auto lg:max-w-7xl lg:px-8 px-4 pb-3 sm:px-6'>
-          <h1 className='text-3xl'>Hello {customer.firstName}</h1>
-          <h2 className='text-m mt-2'>Email: {customer.email}</h2>
+        <div className='max-w-2xl mx-auto lg:max-w-7xl lg:px-8 px-4 pb-3 sm:px-6 flex justify-between'>
+          <div>
+            <h1 className='text-3xl'>Hello {customer.firstName}</h1>
+            <h2 className='text-m mt-2'>Email: {customer.email}</h2>
+          </div>
+          <div>
+            <a
+              href='#'
+              onClick={handleLogout}
+              className='bg-sky-700 text-white flex py-2 px-3 rounded-sm'>
+              Logout
+            </a>
+          </div>
         </div>
       </div>
 
-      <div className='wrapper'></div>
+      {customer.token && <Orders />}
     </section>
   );
 }

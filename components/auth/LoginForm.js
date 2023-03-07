@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useRouter } from 'next/router';
+import { AuthContext } from '@/context/AuthContext';
+import { useToast } from '@/hooks/useToast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
 export default function LoginForm() {
+  const { login } = useContext(AuthContext);
+  const router = useRouter();
+  const toast = useToast();
   const validationSchema = Yup.object().shape({
     password: Yup.string()
       .required('Password is required')
@@ -20,9 +26,24 @@ export default function LoginForm() {
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
 
-  async function onSubmitForm(values) {
-    console.log(values);
-    reset();
+  async function onSubmitForm({ email, password }) {
+    try {
+      const { message } = await login({
+        email,
+        password,
+      });
+      // need to check if there is a checkout url, if so then we also need to call shopify to add the customer to the order
+      // then we need to redirect to the web url
+      // think about having a shipping address form as well the nwe can redirect to the weburl with the shipping step showing
+      if (message === 'ok') {
+        reset();
+        toast('success', 'You have been logged in');
+        router.push('/profile');
+      }
+    } catch (err) {
+      console.log(err);
+      toast('error', 'There was an error please contact support');
+    }
   }
   return (
     <>

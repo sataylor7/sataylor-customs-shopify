@@ -71,10 +71,7 @@ export default function Nav() {
         </div>
 
         <div className='flex items-center md:order-3 gap-x-2'>
-          <a
-            href={`${
-              customer && customer.customerAccessToken ? '/profile' : '/login'
-            }`}>
+          <a href={`${customer && customer.token ? '/profile' : '/login'}`}>
             <HiOutlineUser />
           </a>
           <a

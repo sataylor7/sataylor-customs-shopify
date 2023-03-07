@@ -19,6 +19,8 @@ export default function GuestCheckout() {
 
   async function handleGuestForm(e) {
     console.log('hello there', email);
+    // call the shopify api for associating the cart with the checkout
+    // think about adding the address field
     e.preventDefault();
   }
   return (
