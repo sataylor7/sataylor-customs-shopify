@@ -18,4 +18,7 @@
   .policies-headers {
     @apply font-semibold border-b-[1px] border-slate-200 pb-2 mb-2;
   }
+  main {
+    height: 100vh;
+  }
 }
