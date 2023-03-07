@@ -34,28 +34,28 @@ export default function ContactUs() {
 
   async function onSubmitForm(values) {
     console.log(values);
-    reset();
-    toast('warning', 'This will be implemented shortly');
-    // let config = {
-    //   method: 'post',
-    //   url: `/api/contact`,
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   data: values,
-    // };
+    // reset();
+    // toast('warning', 'This will be implemented shortly');
+    let config = {
+      method: 'post',
+      url: `/api/contact`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: values,
+    };
 
-    // try {
-    //   const response = await axios(config);
-    //   console.log(response);
-    //   if (response.status == 200) {
-    //     reset();
-    //     toast(
-    //       'success',
-    //       'Thank you for contacting us, we will be in touch soon.'
-    //     );
-    //   }
-    // } catch (err) {}
+    try {
+      const response = await axios(config);
+      console.log(response);
+      if (response.status == 200) {
+        reset();
+        toast(
+          'success',
+          'Thank you for contacting us, we will be in touch soon.'
+        );
+      }
+    } catch (err) {}
   }
   return (
     <section className='bg-white '>
