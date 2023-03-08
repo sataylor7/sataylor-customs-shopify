@@ -47,14 +47,13 @@ export default function LoginForm() {
   }
   return (
     <>
-      <div className='w-1/2 mx-auto gap-y-3 mb-4'>
+      <div className='gap-y-3 mb-4'>
         <h2 className='text-3xl font-medium my-2'>Login</h2>
         <p className='text-slate-600'>
-          {' '}
           Welcome back! Please enter your details.
         </p>
       </div>
-      <div className='p-4 py-6 rounded-lg bg-slate-50 md:p-8 w-1/2 mx-auto mb-4'>
+      <div className='p-4 py-6 rounded-lg bg-slate-50 md:p-8 mb-4'>
         <form onSubmit={handleSubmit(onSubmitForm)}>
           <div className=''>
             <label className='block mb-2 text-sm text-slate-600 '>Email</label>

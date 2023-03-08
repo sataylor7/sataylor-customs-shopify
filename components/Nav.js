@@ -11,8 +11,7 @@ import router from 'next/router';
 
 export default function Nav() {
   const [navbar, setNavbar] = useState(false);
-  const { cart, cartOpen, setCartOpen, setShowGuestCheckout } =
-    useContext(CartContext);
+  const { cart, cartOpen, setCartOpen } = useContext(CartContext);
   const { customer } = useContext(AuthContext);
   const scrollDirection = useScrollDirection();
 
@@ -24,7 +23,6 @@ export default function Nav() {
   const handleProfileLink = useCallback(
     (e) => {
       e.preventDefault();
-      setShowGuestCheckout(false);
       // check for customer && customer token
       if (!customer || !customer.token) {
         router.push('/login');
@@ -95,7 +93,7 @@ export default function Nav() {
             onClick={() => setCartOpen(!cartOpen)}>
             <HiOutlineShoppingBag />{' '}
             {cartQuantity > 0 && (
-              <div class='w-4 h-4 text-xs rounded-full bg-white text-sky-900 flex justify-center items-center absolute -top-2 -right-2'>
+              <div className='w-4 h-4 text-xs rounded-full bg-white text-sky-900 flex justify-center items-center absolute -top-2 -right-2'>
                 {cartQuantity}
               </div>
             )}

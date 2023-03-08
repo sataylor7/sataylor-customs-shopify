@@ -8,13 +8,9 @@ export default function Login() {
   return (
     <section className='bg-white'>
       <div className='wrapper'>
-        <LoginForm />
-        {showGuestCheckout && (
-          <>
-            <hr />
-            <GuestCheckout />
-          </>
-        )}
+        <div className='w-1/2 mx-auto'>
+          <LoginForm />
+        </div>
       </div>
     </section>
   );

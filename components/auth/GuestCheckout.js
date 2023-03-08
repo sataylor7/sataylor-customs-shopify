@@ -25,10 +25,10 @@ export default function GuestCheckout() {
   }
   return (
     <>
-      <div className='w-1/2 mx-auto gap-y-3 mb-4'>
+      <div className='gap-y-3 mb-4'>
         <h2 className='text-2xl font-medium my-2'>Continue as a guest</h2>
       </div>
-      <div className='p-4 py-6 rounded-lg bg-slate-50 md:p-8 w-1/2 mx-auto'>
+      <div className='p-4 py-6 rounded-lg bg-slate-50 md:p-8'>
         <form onSubmit={handleSubmit(handleGuestForm)}>
           <div className=''>
             <label className='block mb-2 text-sm text-slate-600 '>

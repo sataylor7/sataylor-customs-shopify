@@ -1,5 +1,9 @@
 import { createContext, useState, useEffect } from 'react';
-import { createCheckout, updateCheckout } from '../lib/shopify';
+import {
+  createCheckout,
+  updateCheckout,
+  checkoutCustomerAssociateV2,
+} from '../lib/shopify';
 
 const CartContext = createContext();
 
@@ -9,7 +13,6 @@ export default function ShopProvider({ children }) {
   const [checkoutId, setCheckoutId] = useState('');
   const [checkoutUrl, setCheckoutUrl] = useState('');
   const [cartLoading, setCartLoading] = useState(false);
-  const [showGuestCheckout, setShowGuestCheckout] = useState(false);
 
   useEffect(() => {
     if (localStorage.checkout_id) {
@@ -139,6 +142,14 @@ export default function ShopProvider({ children }) {
     );
   }
 
+  async function associateCartToCustomer(token) {
+    const updatedCheckout = await checkoutCustomerAssociateV2(
+      checkoutId,
+      token
+    );
+    console.log(updatedCheckout);
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -153,7 +164,7 @@ export default function ShopProvider({ children }) {
         incrementCartItem,
         decrementCartItem,
         showGuestCheckout,
-        setShowGuestCheckout,
+        associateCartToCustomer,
       }}>
       {children}
     </CartContext.Provider>

@@ -70,6 +70,7 @@ export default function AuthProvider({ children }) {
         token: token.accessToken,
         firstName: response.firstName,
         email: response.email,
+        address: response.defaultAddress ? true : false,
       };
       setCustomer(customerObj);
       setLogin(true);
