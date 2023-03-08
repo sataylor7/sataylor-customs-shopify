@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useContext, useState } from 'react';
+import { useContext, useState, useCallback } from 'react';
 import { CartContext } from '../context/shopContext';
 import { AuthContext } from '../context/AuthContext';
 import MiniCart from './MiniCart';
@@ -7,10 +7,12 @@ import { headerLinks } from '../configs/menus';
 import Logo from './Logo';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 import { HiOutlineShoppingBag, HiOutlineUser } from 'react-icons/hi';
+import router from 'next/router';
 
 export default function Nav() {
   const [navbar, setNavbar] = useState(false);
-  const { cart, cartOpen, setCartOpen } = useContext(CartContext);
+  const { cart, cartOpen, setCartOpen, setShowGuestCheckout } =
+    useContext(CartContext);
   const { customer } = useContext(AuthContext);
   const scrollDirection = useScrollDirection();
 
@@ -18,6 +20,20 @@ export default function Nav() {
   cart.map((item) => {
     return (cartQuantity += item?.variantQuantity);
   });
+
+  const handleProfileLink = useCallback(
+    (e) => {
+      e.preventDefault();
+      setShowGuestCheckout(false);
+      // check for customer && customer token
+      if (!customer || !customer.token) {
+        router.push('/login');
+      } else {
+        router.push('/profile');
+      }
+    },
+    [customer]
+  );
 
   return (
     <header
@@ -71,7 +87,7 @@ export default function Nav() {
         </div>
 
         <div className='flex items-center md:order-3 gap-x-2'>
-          <a href={`${customer && customer.token ? '/profile' : '/login'}`}>
+          <a href={`#`} onClick={handleProfileLink}>
             <HiOutlineUser />
           </a>
           <a

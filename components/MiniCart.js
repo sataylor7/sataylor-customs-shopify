@@ -1,13 +1,16 @@
-import { Fragment, useContext, useRef } from 'react';
+import { Fragment, useContext, useRef, useCallback } from 'react';
+import { useRouter } from 'next/router';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CartContext } from '../context/shopContext';
+import { AuthContext } from '@/context/AuthContext';
 import { formatter } from '../utils/helpers';
 import EmptyCartSVG from '../icons/empty-svg.icon';
 
 export default function MiniCart({ cart }) {
+  const router = useRouter();
   const cancelButtonRef = useRef();
 
   const {
@@ -19,12 +22,29 @@ export default function MiniCart({ cart }) {
     cartLoading,
     incrementCartItem,
     decrementCartItem,
+    setShowGuestCheckout,
   } = useContext(CartContext);
+
+  const { customer } = useContext(AuthContext);
 
   let cartTotal = 0;
   cart.map((item) => {
     cartTotal += item?.variantPrice * item?.variantQuantity;
   });
+
+  const handleCheckoutLink = useCallback(
+    (e) => {
+      e.preventDefault();
+      // check for customer && customer token
+      if (!customer || !customer.token) {
+        // set show guest checkout and redirect to /login
+        setShowGuestCheckout(true);
+        setCartOpen(false);
+        router.push('/login');
+      }
+    },
+    [customer]
+  );
 
   return (
     <Transition.Root show={cartOpen} as={Fragment}>
@@ -185,7 +205,8 @@ export default function MiniCart({ cart }) {
                       </p>
                       <div className='mt-6'>
                         <a
-                          href={checkoutUrl}
+                          href='#'
+                          onClick={handleCheckoutLink}
                           className={`flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-sky-800 hover:bg-sky-900 border border-transparent rounded-md shadow-sm  ${
                             cartLoading
                               ? 'cursor-not-allowed'

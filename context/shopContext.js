@@ -9,6 +9,7 @@ export default function ShopProvider({ children }) {
   const [checkoutId, setCheckoutId] = useState('');
   const [checkoutUrl, setCheckoutUrl] = useState('');
   const [cartLoading, setCartLoading] = useState(false);
+  const [showGuestCheckout, setShowGuestCheckout] = useState(false);
 
   useEffect(() => {
     if (localStorage.checkout_id) {
@@ -151,6 +152,8 @@ export default function ShopProvider({ children }) {
         cartLoading,
         incrementCartItem,
         decrementCartItem,
+        showGuestCheckout,
+        setShowGuestCheckout,
       }}>
       {children}
     </CartContext.Provider>
