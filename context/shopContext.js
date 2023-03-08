@@ -163,7 +163,6 @@ export default function ShopProvider({ children }) {
         cartLoading,
         incrementCartItem,
         decrementCartItem,
-        showGuestCheckout,
         associateCartToCustomer,
       }}>
       {children}
