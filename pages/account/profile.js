@@ -40,7 +40,6 @@ export default function Profile() {
         <div className='max-w-2xl mx-auto lg:max-w-7xl lg:px-8 px-4 pb-3 sm:px-6 flex justify-between'>
           <div>
             <h1 className='text-3xl'>Hello {customer.firstName}</h1>
-            <h2 className='text-m mt-2'>Email: {customer.email}</h2>
           </div>
           <div>
             <a
@@ -52,8 +51,35 @@ export default function Profile() {
           </div>
         </div>
       </div>
-
-      {customer.token && <Orders />}
+      <div className='max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8 gap-y-3 flex flex-wrap'>
+        {customer.token && <Orders />}
+        <div className='flex-1 ml-4'>
+          <h3 className='text-xl border-b-[1px] border-slate-200 mb-3 pb-2'>
+            Account Details
+          </h3>
+          <div>
+            <span>Email:</span>
+            <h2 className='text-m mt-2'>{customer.email}</h2>
+          </div>
+          <div className='mt-4'>
+            <span>Default Address:</span>
+            {customer.defaultAddress && (
+              <div className='text-m mt-2'>
+                <p>{customer.defaultAddress.address1}</p>
+                {customer.defaultAddress.address2 && (
+                  <p>{customer.defaultAddress.address2}</p>
+                )}
+                <p>
+                  {customer.defaultAddress.city}{' '}
+                  {customer.defaultAddress.province}{' '}
+                  {customer.defaultAddress.zip}
+                </p>
+                <p>{customer.defaultAddress.country}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
