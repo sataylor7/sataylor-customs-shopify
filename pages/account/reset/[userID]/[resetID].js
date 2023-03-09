@@ -5,14 +5,15 @@ import { useToast } from '@/hooks/useToast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { customerActivate } from '@/lib/shopify';
 import { AuthContext } from '@/context/AuthContext';
+import { customerReset } from '@/lib/shopify';
 
 export default function Activate() {
   const { logout } = useContext(AuthContext);
-  const router = useRouter();
   const toast = useToast();
-  const { userID, activateID } = router.query;
+  const router = useRouter();
+  const { userID, resetID } = router.query;
+
   // just making sure user is logged out
   useEffect(() => {
     async function makeSureLogout() {
@@ -20,6 +21,7 @@ export default function Activate() {
     }
     makeSureLogout();
   }, []);
+
   const validationSchema = Yup.object().shape({
     password: Yup.string()
       .required('Password is required')
@@ -33,17 +35,17 @@ export default function Activate() {
 
   // get functions to build form with useForm() hook
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
-  const { errors } = formState;
+  const { errors, isSubmitting } = formState;
   async function onSubmitForm({ password }) {
     try {
-      const res = await customerActivate(
+      const res = await customerReset(
         encode('Customer', userID),
-        activateID,
+        resetID,
         password
       );
       console.log(res);
-      if (res.customer && res.customer.email) {
-        toast('success', 'Sweet account activated, lets login');
+      if (res.email) {
+        toast('success', 'Password reset, lets login');
         router.push('/account/login');
       }
     } catch (err) {
@@ -54,8 +56,8 @@ export default function Activate() {
   return (
     <>
       <div className='w-1/2 mx-auto gap-y-3 my-4'>
-        <h2 className='text-3xl font-medium my-2'>Activate Account</h2>
-        <p className='text-slate-600'>Almost there.</p>
+        <h2 className='text-3xl font-medium my-2'>Reset Your Password</h2>
+        <p className='text-slate-600'>Let's get you logged back in</p>
       </div>
       <div className='p-4 py-6 rounded-lg bg-slate-50 md:p-8 w-1/2 mx-auto mb-4'>
         <form onSubmit={handleSubmit(onSubmitForm)}>
@@ -97,18 +99,8 @@ export default function Activate() {
           </div>
 
           <button className='w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-sky-700 rounded-lg hover:bg-sky-900 focus:outline-none focus:ring focus:ring-sky-300 focus:ring-opacity-50'>
-            Activate
+            {isSubmitting ? 'Resetting' : 'Reset Password'}
           </button>
-          <div className='mt-4 text-m text-slate-500'>
-            <p>
-              Already have an account?{' '}
-              <a
-                href='/account/login'
-                className='text-sky-700 underline underline-offset-4 ml-2'>
-                Login
-              </a>
-            </p>
-          </div>
         </form>
       </div>
     </>
