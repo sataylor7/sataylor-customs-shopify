@@ -34,21 +34,16 @@ export default function SignUpForm() {
 
   async function onSubmitForm({ email, firstName, lastName, password }) {
     try {
-      const { message } = await signup({
+      const response = await signup({
         email,
         password,
         firstName,
         lastName,
       });
-
-      if (message === 'ok') {
+      console.log(response);
+      if (response.message) {
         reset();
-        toast(
-          'success',
-          "Your account has been activated and you've been logged in"
-        );
-        // check if there is a weburl then call shopify api to update the order with the customer
-        // think about adding the shipping address form
+        toast(response.type, response.message);
         router.push('/profile');
       }
     } catch (err) {
@@ -164,6 +159,16 @@ export default function SignUpForm() {
           <button className='w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-sky-700 rounded-lg hover:bg-sky-900 focus:outline-none focus:ring focus:ring-sky-300 focus:ring-opacity-50'>
             Sign Up
           </button>
+          <div className='mt-4 text-m text-slate-500'>
+            <p>
+              Already have an account?{' '}
+              <a
+                href='/account/login'
+                className='text-sky-700 underline underline-offset-4 ml-2'>
+                Login
+              </a>
+            </p>
+          </div>
         </form>
       </div>
     </>

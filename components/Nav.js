@@ -25,9 +25,9 @@ export default function Nav() {
       e.preventDefault();
       // check for customer && customer token
       if (!customer || !customer.token) {
-        router.push('/login');
+        router.push('/account/login');
       } else {
-        router.push('/profile');
+        router.push('/account/profile');
       }
     },
     [customer]

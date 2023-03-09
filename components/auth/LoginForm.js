@@ -38,7 +38,7 @@ export default function LoginForm() {
       if (message === 'ok') {
         reset();
         toast('success', 'You have been logged in');
-        router.push('/profile');
+        router.push('/account/profile');
       }
     } catch (err) {
       console.log(err);
@@ -97,7 +97,7 @@ export default function LoginForm() {
             <p>
               Don't have an account?{' '}
               <a
-                href='/signup'
+                href='/account/register'
                 className='text-sky-700 underline underline-offset-4 ml-2'>
                 Sign up
               </a>
