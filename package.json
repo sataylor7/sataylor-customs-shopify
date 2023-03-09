@@ -19,6 +19,8 @@
     "react-hook-form": "^7.43.3",
     "react-icons": "^4.7.1",
     "sass": "^1.38.2",
+    "shopify-gid": "^1.0.1",
+    "spacetime": "^7.4.1",
     "swiper": "^6.7.5",
     "swr": "^1.2.0",
     "yup": "^1.0.2"
