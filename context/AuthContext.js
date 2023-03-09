@@ -4,6 +4,7 @@ import {
   customerAccessTokenCreate,
   customerAccessTokenDelete,
   customerQuery,
+  customerRecover,
 } from '../lib/shopify';
 
 const AuthContext = createContext();
@@ -40,9 +41,14 @@ export default function AuthProvider({ children }) {
 
   async function register({ email, firstName, lastName, password }) {
     // create a new customer
-    const response = await createCustomer(email, password, firstName, lastName);
-    console.log(response);
-    if (response.id) {
+    const { customer, customerUserErrors } = await createCustomer(
+      email,
+      password,
+      firstName,
+      lastName
+    );
+    console.log(customer);
+    if (customer) {
       // create a mew token
       const token = await customerAccessTokenCreate(email, password);
       console.log(token);
@@ -55,9 +61,19 @@ export default function AuthProvider({ children }) {
       setLogin(true);
       localStorage.setItem('customer', JSON.stringify(customerObj));
       return {
-        message: 'ok',
+        type: 'success',
+        message: "Your account has been activated and you've been logged in",
       };
     } else {
+      if (customerUserErrors.length > 0) {
+        if (customerUserErrors[0].code === 'CUSTOMER_DISABLED') {
+          // customer exist => usually guest checkout
+          return {
+            type: 'info',
+            message: customerUserErrors[0].message,
+          };
+        }
+      }
       // should show some kind of error?
     }
   }
