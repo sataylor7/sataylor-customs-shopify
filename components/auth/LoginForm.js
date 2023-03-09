@@ -103,6 +103,13 @@ export default function LoginForm() {
               </a>
             </p>
           </div>
+          <div className='mt-4 text-m text-slate-500'>
+            <a
+              href='/account/forgot'
+              className='text-sky-700 underline underline-offset-4'>
+              Forgot password?
+            </a>
+          </div>
         </form>
       </div>
     </>
