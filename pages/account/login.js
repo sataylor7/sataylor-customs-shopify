@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import LoginForm from '@/components/auth/LoginForm';
-import { CartContext } from '@/context/shopContext';
 
 export default function Login() {
   return (
