@@ -6,11 +6,11 @@ export default async (req, res) => {
 
   try {
     await postmarkClient.sendEmail({
-      From: email,
+      From: process.env.SMTP_CONTACT_FROM,
       To: process.env.SMTP_FROM,
-      Subject: 'Hello from Postmark',
-      HtmlBody: message,
-      TextBody: message,
+      Subject: 'Contact Us Form',
+      HtmlBody: `<strong>Name:</strong> ${name} <br/> <strong>Email:</strong> ${email} <br/> <strong>Message:</strong> ${message}`,
+      TextBody: `Name:${name} \n Email:${email} \n Message:${message}`,
       MessageStream: 'outbound',
     });
 
