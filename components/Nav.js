@@ -16,9 +16,12 @@ export default function Nav() {
   const scrollDirection = useScrollDirection();
 
   let cartQuantity = 0;
-  cart.map((item) => {
-    return (cartQuantity += item?.variantQuantity);
-  });
+
+  if (cart.lines && cart.lines.length > 0) {
+    cart.lines.map((item) => {
+      return (cartQuantity += item?.quantity);
+    });
+  }
 
   const handleProfileLink = useCallback(
     (e) => {

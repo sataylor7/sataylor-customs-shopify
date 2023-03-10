@@ -16,84 +16,94 @@ const MiniCartView = ({
   decrementCartItem,
   incrementCartItem,
   removeCartItem,
-  cartTotal,
   handleCheckoutLink,
   clearCart,
   setCartOpen,
 }) => {
+  const { lines = [], estimatedCost = {} } = cart;
+
   return (
     <>
       <div className='mt-8 overflow-y-auto flex-1'>
         <div className='flow-root'>
-          {cart.length > 0 ? (
+          {lines.length > 0 ? (
             <ul role='list' className='-my-6 divide-y divide-gray-200'>
-              {cart.map((product) => (
-                <li
-                  key={product.id + Math.random()}
-                  className='relative flex py-6'>
-                  <div
-                    className={`top-0 left-0 right-0 z-50 w-full h-full absolute ${
-                      cartLoading ? 'bg-white opacity-60' : 'hidden'
-                    }`}></div>
-                  <div className='relative flex-shrink-0 w-24 h-24 overflow-hidden border border-gray-200 rounded-md'>
-                    <Image
-                      src={product.image}
-                      alt={product.title}
-                      layout='fill'
-                      objectFit='cover'
-                    />
-                  </div>
+              {lines.map((item) => {
+                const { product, priceV2, id, title } = item.merchandise;
+                const productImage = product.images.edges[0].node ?? {};
+                return (
+                  <li key={id + Math.random()} className='relative flex py-6'>
+                    <div
+                      className={`top-0 left-0 right-0 z-50 w-full h-full absolute ${
+                        cartLoading ? 'bg-white opacity-60' : 'hidden'
+                      }`}>
+                      Loading..
+                    </div>
+                    <div className='relative flex-shrink-0 w-24 h-24 overflow-hidden border border-gray-200 rounded-md'>
+                      <Image
+                        src={productImage.src}
+                        alt={product.title}
+                        layout='fill'
+                        objectFit='cover'
+                      />
+                    </div>
 
-                  <div className='flex flex-col flex-1 ml-4'>
-                    <div>
-                      <div className='flex justify-between text-base font-medium text-gray-900'>
-                        <h3>
-                          <Link href={`/products/${product.handle}`} passHref>
-                            <a onClick={() => setCartOpen(false)}>
-                              {product.title}
-                            </a>
-                          </Link>
-                        </h3>
-                        <p className='ml-4'>
-                          {formatter.format(product.variantPrice)}
+                    <div className='flex flex-col flex-1 ml-4'>
+                      <div>
+                        <div className='flex justify-between text-base font-medium text-gray-900'>
+                          <h3>
+                            <Link href={`/products/${product.handle}`} passHref>
+                              <a onClick={() => setCartOpen(false)}>
+                                {product.title}
+                              </a>
+                            </Link>
+                          </h3>
+                          <p className='ml-4'>
+                            {formatter.format(priceV2.amount)}
+                          </p>
+                        </div>
+                        <p className='mt-1 text-sm text-gray-500'>
+                          {title !== 'Default Title' && title}
                         </p>
                       </div>
-                      <p className='mt-1 text-sm text-gray-500'>
-                        {product.variantTitle}
-                      </p>
-                    </div>
-                    <div className='flex items-end justify-between flex-1 text-sm'>
-                      {/* <p className="text-gray-500">Qty {product.variantQuantity}</p> */}
-                      <div className={`border`}>
-                        <button
-                          className='px-2'
-                          onClick={() => decrementCartItem(product)}
-                          disabled={cartLoading}>
-                          -
-                        </button>
-                        <span className='px-2 border-l border-r'>
-                          {product.variantQuantity}
-                        </span>
-                        <button
-                          className='px-2'
-                          onClick={() => incrementCartItem(product)}
-                          disabled={cartLoading}>
-                          +
-                        </button>
+                      <div className='flex items-end justify-between flex-1 text-sm'>
+                        {/* <p className="text-gray-500">Qty {product.variantQuantity}</p> */}
+                        <div className={`border`}>
+                          <button
+                            className='px-2'
+                            onClick={() =>
+                              decrementCartItem(item.id, item.quantity)
+                            }
+                            disabled={cartLoading}>
+                            -
+                          </button>
+                          <span className='px-2 border-l border-r'>
+                            {' '}
+                            {item.quantity}
+                          </span>
+                          <button
+                            className='px-2'
+                            onClick={() =>
+                              incrementCartItem(item.id, item.quantity)
+                            }
+                            disabled={cartLoading}>
+                            +
+                          </button>
+                        </div>
+                        <div className='flex'>
+                          <button
+                            onClick={() => removeCartItem(item.id)}
+                            type='button'
+                            className='font-medium text-gray-500 hover:text-gray-800'
+                            disabled={cartLoading}>
+                            Remove
+                          </button>
+                        </div>
                       </div>
-                      <div className='flex'>
-                        <button
-                          onClick={() => removeCartItem(product.id)}
-                          type='button'
-                          className='font-medium text-gray-500 hover:text-gray-800'
-                          disabled={cartLoading}>
-                          Remove
-                        </button>
-                      </div>
                     </div>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
           ) : (
             <div className='flex-auto'>
@@ -110,11 +120,11 @@ const MiniCartView = ({
         </div>
       </div>
 
-      {cart.length > 0 ? (
+      {cart.lines?.length > 0 ? (
         <div className='border-t border-gray-200 pt-4'>
           <div className='flex justify-between text-base font-medium text-gray-900'>
             <p>Subtotal</p>
-            <p>{formatter.format(cartTotal)}</p>
+            <p>{formatter.format(estimatedCost.subtotalAmount.amount)}</p>
           </div>
           <p className='mt-0.5 text-sm text-gray-500'>
             Shipping and taxes calculated at checkout.
@@ -170,11 +180,6 @@ export default function MiniCart({ cart }) {
   } = useContext(CartContext);
 
   const { customer } = useContext(AuthContext);
-
-  let cartTotal = 0;
-  cart.map((item) => {
-    cartTotal += item?.variantPrice * item?.variantQuantity;
-  });
 
   const handleCheckoutLink = useCallback(
     async (e) => {
@@ -251,7 +256,6 @@ export default function MiniCart({ cart }) {
                         decrementCartItem,
                         incrementCartItem,
                         removeCartItem,
-                        cartTotal,
                         handleCheckoutLink,
                         clearCart,
                         setCartOpen,
