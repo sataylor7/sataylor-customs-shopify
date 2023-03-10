@@ -9,6 +9,7 @@ import { AuthContext } from '@/context/AuthContext';
 import { formatter } from '../utils/helpers';
 import EmptyCartSVG from '../icons/empty-svg.icon';
 import LoginGuestView from './drawer/LoginGuestView';
+import { getCheckoutUrl } from '@/lib/shopify';
 
 const MiniCartView = ({
   cart,
@@ -163,7 +164,6 @@ const MiniCartView = ({
 };
 
 export default function MiniCart({ cart }) {
-  const router = useRouter();
   const cancelButtonRef = useRef();
   const [currentView, setCurrentView] = useState('MiniCart');
 
@@ -188,13 +188,14 @@ export default function MiniCart({ cart }) {
       if (!customer || !customer.token) {
         // set show guest checkout and redirect to /login
         setCurrentView('LoginGuest');
-        // setCartOpen(false);
-        // router.push('/login');
+      } else {
+        // if they do then that means the user has logged in (either register => login or just existing account login)
+        // need to attach the user to the checkout
+        await associateCartToCustomer(customer.email);
+        // checkout if the customer has an address
+        const { checkoutUrl } = await getCheckoutUrl(cart.id);
+        if (checkoutUrl) window.location = checkoutUrl;
       }
-      // if they do then that means the user has logged in (either register => login or just existing account login)
-      // need to attach the user to the checkout
-      //await associateCartToCustomer(customer.token);
-      // checkout if the customer has an address
     },
     [customer]
   );

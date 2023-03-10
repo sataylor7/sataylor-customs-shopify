@@ -1,31 +1,41 @@
 import React, { useState, useCallback, useContext } from 'react';
 import * as Yup from 'yup';
 import update from 'immutability-helper';
+import { AuthContext } from '@/context/AuthContext';
 import { CartContext } from '@/context/shopContext';
+import { getCheckoutUrl } from '@/lib/shopify';
+
 // validation helpers
-function ValidateForm({ validationSchema, setErrors, values }) {
-  return validationSchema
-    .validate(values, { abortEarly: false })
-    .catch((err) => {
-      const tempErrMessage = [];
-      const errors = err.inner.reduce((acc, error) => {
-        tempErrMessage.push(error.message);
-        return {
-          ...acc,
-          [error.path]: tempErrMessage[0],
-        };
-      }, {});
-      console.log(errors);
-      setErrors((prevErrors) =>
-        update(prevErrors, {
-          $set: errors,
-        })
-      );
-    });
-}
+const ValidateForm = async ({ validationSchema, setErrors, values }) => {
+  const isFormValid = await validationSchema.isValid(values, {
+    abortEarly: false,
+  });
+  if (!isFormValid) {
+    return validationSchema
+      .validate(values, { abortEarly: false })
+      .catch((err) => {
+        const tempErrMessage = [];
+        const errors = err.inner.reduce((acc, error) => {
+          tempErrMessage.push(error.message);
+          return {
+            ...acc,
+            [error.path]: tempErrMessage[0],
+          };
+        }, {});
+        console.log(errors);
+        setErrors((prevErrors) =>
+          update(prevErrors, {
+            $set: errors,
+          })
+        );
+      });
+  }
+  return 'Form good';
+};
 
 export default function LoginGuestView({ setCurrentView }) {
-  const { checkoutUrl } = useContext(CartContext);
+  const { associateCartToCustomer, cart } = useContext(CartContext);
+  const { register: signup, login } = useContext(AuthContext);
 
   const [values, setValues] = useState({
     firstName: '',
@@ -58,51 +68,75 @@ export default function LoginGuestView({ setCurrentView }) {
     );
   }, []);
 
-  const handleLogin = useCallback(async () => {
-    const validationSchema = Yup.object().shape({
-      password: Yup.string()
-        .required('Password is required')
-        .min(8, 'Minimum of 8 characters'),
-      email: Yup.string()
-        .required('Email is required')
-        .email('Email is invalid'),
-    });
-    try {
-      //   await axios.post('/api/register', {
-      //     email,
-      //     name,
-      //     password,
-      //   });
-      //   login();
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  const handleLogin = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const validationSchema = Yup.object().shape({
+        password: Yup.string()
+          .required('Password is required')
+          .min(8, 'Minimum of 8 characters'),
+        email: Yup.string()
+          .required('Email is required')
+          .email('Email is invalid'),
+      });
 
-  const handleRegister = useCallback(async () => {
-    const validationSchema = Yup.object().shape({
-      password: Yup.string()
-        .required('Password is required')
-        .min(8, 'Minimum of 8 characters'),
-      firstName: Yup.string().required('First Name required'),
-      lastName: Yup.string().required('Last name is required'),
-      email: Yup.string()
-        .required('Email is required')
-        .email('Email is invalid'),
-    });
-    try {
-      //   await axios.post('/api/register', {
-      //     email,
-      //     name,
-      //     password,
-      //   });
-      //   login();
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+      try {
+        await ValidateForm({ validationSchema, setErrors, values });
+        await login({
+          email: values.email,
+          password: values.password,
+        });
+        // @TODO: check for address if there isn't an address then go to the address view else
+        // for now attach the customer email to the current checkout/cart then redirect to checkout
+        await associateCartToCustomer(values.email);
+        const { checkoutUrl } = await getCheckoutUrl(cart.id);
+        if (checkoutUrl) window.location = checkoutUrl;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [values]
+  );
+
+  const handleRegister = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const validationSchema = Yup.object().shape({
+        password: Yup.string()
+          .required('Password is required')
+          .min(8, 'Minimum of 8 characters'),
+        firstName: Yup.string().required('First Name required'),
+        lastName: Yup.string().required('Last name is required'),
+        email: Yup.string()
+          .required('Email is required')
+          .email('Email is invalid'),
+      });
+      try {
+        await ValidateForm({ validationSchema, setErrors, values });
+        await signup({
+          email: values.email,
+          password: values.password,
+          firstName: values.firstName,
+          lastName: values.lastName,
+        });
+        // @TODO: check for address if there isn't an address then go to the address view else
+        // for now attach the customer email to the current checkout/cart then redirect to checkout
+        await associateCartToCustomer(values.email);
+        const { checkoutUrl } = await getCheckoutUrl(cart.id);
+        if (checkoutUrl) window.location = checkoutUrl;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [values]
+  );
 
   // handle guest checkout needs to clear the cart and redirect to the checkout url
+  const handleGuest = async (e) => {
+    e.preventDefault();
+    const { checkoutUrl } = await getCheckoutUrl(cart.id);
+    if (checkoutUrl) window.location = checkoutUrl;
+  };
 
   return (
     <div className='mt-8 overflow-y-auto flex-1'>
@@ -229,13 +263,13 @@ export default function LoginGuestView({ setCurrentView }) {
               </span>
               .
             </p>
-            {/* <p className='mt-2 border-t-[1px] border-slate-200 pt-2'>
+            <p className='mt-2 border-t-[1px] border-slate-200 pt-2'>
               <a
-                href={checkoutUrl}
+                onClick={handleGuest}
                 className='text-sky-700 hover:underline hover:underline-offset-4 cursor-pointer'>
                 Checkout as a guest
               </a>
-            </p> */}
+            </p>
           </form>
         </div>
         <button

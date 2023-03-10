@@ -127,27 +127,6 @@ export default function ShopProvider({ children }) {
     setCart(formattedCart);
     localStorage.setItem('cart_id', formattedCart.id);
     setCartLoading(false);
-
-    // if (item.variantQuantity === 1) {
-    //   removeCartItem(item.id);
-    // } else {
-    //   let newCart = [];
-    //   cart.map((cartItem) => {
-    //     if (cartItem.id === item.id) {
-    //       cartItem.variantQuantity--;
-    //       newCart = [...cart];
-    //     }
-    //   });
-
-    //   setCart(newCart);
-    //   const newCheckout = await updateCheckout(checkoutId, newCart);
-
-    //   localStorage.setItem(
-    //     'checkout_id',
-    //     JSON.stringify([newCart, newCheckout])
-    //   );
-    // }
-    // setCartLoading(false);
   }
 
   async function clearCart() {
@@ -155,25 +134,13 @@ export default function ShopProvider({ children }) {
 
     setCart(updatedCart);
     localStorage.removeItem('cart_id');
-    // const newCheckout = await updateCheckout(checkoutId, updatedCart);
-
-    // localStorage.setItem(
-    //   'checkout_id',
-    //   JSON.stringify([updatedCart, newCheckout])
-    // );
   }
 
-  async function associateCartToCustomer(token) {
-    const updatedCheckout = await checkoutCustomerAssociateV2(
-      checkoutId,
-      token
-    );
-    setCheckoutUrl(updatedCheckout.webUrl);
-    console.log(updatedCheckout);
-    localStorage.setItem(
-      'checkout_id',
-      JSON.stringify([cart, updatedCheckout])
-    );
+  async function associateCartToCustomer(email) {
+    const cartId = localStorage.getItem('cart_id');
+    const updatedCheckout = await associateCustomerWithCart(cartId, email);
+
+    localStorage.setItem('cart_id', updatedCheckout.id);
   }
 
   return (
