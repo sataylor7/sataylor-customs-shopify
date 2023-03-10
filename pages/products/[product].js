@@ -16,16 +16,16 @@ export default function ProductPage({ product }) {
 export async function getStaticPaths() {
   const products = await recursiveCatalog();
 
-  const paths = products.map((item) => {
-    const product = String(item.node.handle);
+  // const paths = products.map((item) => {
+  //   const product = String(item.node.handle);
 
-    return {
-      params: { product },
-    };
-  });
-
+  //   return {
+  //     params: { product },
+  //   };
+  // });
+  const firstProduct = products[0];
   return {
-    paths,
+    paths: [{ params: { product: String(firstProduct.node.handle) } }],
     fallback: 'blocking',
   };
 }
