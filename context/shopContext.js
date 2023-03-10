@@ -3,143 +3,164 @@ import {
   createCheckout,
   updateCheckout,
   checkoutCustomerAssociateV2,
+  fetchCart,
+  createCartWithItem,
+  addItemsToCart,
+  deleteItemsFromCart,
+  updateItemsInCart,
+  getCheckoutUrl,
+  associateCustomerWithCart,
 } from '../lib/shopify';
 
 const CartContext = createContext();
 
 export default function ShopProvider({ children }) {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState({});
   const [cartOpen, setCartOpen] = useState(false);
   const [checkoutId, setCheckoutId] = useState('');
   const [checkoutUrl, setCheckoutUrl] = useState('');
   const [cartLoading, setCartLoading] = useState(false);
 
-  useEffect(() => {
-    if (localStorage.checkout_id) {
-      const cartObject = JSON.parse(localStorage.checkout_id);
-
-      if (cartObject[0].id) {
-        setCart([cartObject[0]]);
-      } else if (cartObject[0].length > 0) {
-        setCart(...[cartObject[0]]);
-      }
-
-      setCheckoutId(cartObject[1].id);
-      setCheckoutUrl(cartObject[1].webUrl);
+  async function loadCart() {
+    const cartId = localStorage.getItem('cart_id');
+    if (!cartId) {
+      setCart({});
+      return;
     }
-  }, []);
 
-  async function addToCart(addedItem) {
-    const newItem = { ...addedItem };
-    console.log(newItem);
-    setCartOpen(true);
+    const cartData = await fetchCart(cartId);
 
-    if (cart.length === 0) {
-      setCart([newItem]);
-
-      const checkout = await createCheckout(newItem.id, 1);
-      setCheckoutId(checkout.id);
-      setCheckoutUrl(checkout.webUrl);
-
-      localStorage.setItem('checkout_id', JSON.stringify([newItem, checkout]));
-    } else {
-      let newCart = [];
-      let added = false;
-
-      cart.map((item) => {
-        if (item.id === newItem.id) {
-          item.variantQuantity++;
-          newCart = [...cart];
-          added = true;
-        }
-      });
-
-      if (!added) {
-        newCart = [...cart, newItem];
-      }
-
-      setCart(newCart);
-      const newCheckout = await updateCheckout(checkoutId, newCart);
-      localStorage.setItem(
-        'checkout_id',
-        JSON.stringify([newCart, newCheckout])
-      );
+    if (cartData.lines) {
+      setCart(cartData);
     }
   }
 
-  async function removeCartItem(itemToRemove) {
-    const updatedCart = cart.filter((item) => item.id !== itemToRemove);
-    setCartLoading(true);
+  useEffect(() => {
+    loadCart();
+  }, []);
 
+  async function addToCart(addedItem) {
+    setCartOpen(true);
+    const cartId = localStorage.getItem('cart_id');
+    let formattedCart;
+
+    if (cartId) {
+      console.log('--------------------------------');
+      console.log('Adding item to existing cart...');
+      console.log('--------------------------------');
+
+      formattedCart = await addItemsToCart({
+        cartId,
+        itemId: addedItem.id,
+        quantity: addedItem.variantQuantity,
+      });
+    } else {
+      console.log('--------------------------------');
+      console.log('Creating new cart with item...');
+      console.log('--------------------------------');
+
+      formattedCart = await createCartWithItem({
+        itemId: addedItem.id,
+        quantity: addedItem.variantQuantity,
+      });
+    }
+    localStorage.setItem('cart_id', formattedCart.id);
+    setCart(formattedCart);
+  }
+
+  async function removeCartItem(itemToRemove) {
+    console.log(itemToRemove);
+
+    setCartLoading(true);
+    console.log('--------------------------------');
+    console.log('Removing item from cart...');
+    console.log('--------------------------------');
+    const cartId = localStorage.getItem('cart_id');
+    const updatedCart = await deleteItemsFromCart({
+      cartId,
+      lineIds: itemToRemove,
+    });
+
+    console.log('updated cart from deleting', updatedCart);
     setCart(updatedCart);
 
-    const newCheckout = await updateCheckout(checkoutId, updatedCart);
-
-    localStorage.setItem(
-      'checkout_id',
-      JSON.stringify([updatedCart, newCheckout])
-    );
+    localStorage.setItem('cart_id', updatedCart.id);
     setCartLoading(false);
 
-    if (cart.length === 1) {
+    if (cart?.lines.length === 1) {
       setCartOpen(false);
     }
   }
 
-  async function incrementCartItem(item) {
+  async function incrementCartItem(item, currentQuantity) {
     setCartLoading(true);
-
-    let newCart = [];
-
-    cart.map((cartItem) => {
-      if (cartItem.id === item.id) {
-        cartItem.variantQuantity++;
-        newCart = [...cart];
-      }
+    console.log('--------------------------------');
+    console.log('Updating cart with +1 item...');
+    console.log('--------------------------------');
+    const cartId = localStorage.getItem('cart_id');
+    console.log(cartId);
+    const formattedCart = await updateItemsInCart({
+      cartId,
+      itemId: item,
+      quantity: currentQuantity + 1,
     });
-    setCart(newCart);
-    const newCheckout = await updateCheckout(checkoutId, newCart);
 
-    localStorage.setItem('checkout_id', JSON.stringify([newCart, newCheckout]));
+    setCart(formattedCart);
+    localStorage.setItem('cart_id', formattedCart.id);
     setCartLoading(false);
   }
 
-  async function decrementCartItem(item) {
+  async function decrementCartItem(item, currentQuantity) {
     setCartLoading(true);
+    setCartLoading(true);
+    console.log('--------------------------------');
+    console.log('Updating cart with -1 item...');
+    console.log('--------------------------------');
 
-    if (item.variantQuantity === 1) {
-      removeCartItem(item.id);
-    } else {
-      let newCart = [];
-      cart.map((cartItem) => {
-        if (cartItem.id === item.id) {
-          cartItem.variantQuantity--;
-          newCart = [...cart];
-        }
-      });
+    const cartId = localStorage.getItem('cart_id');
+    const formattedCart = await updateItemsInCart({
+      cartId,
+      itemId: item,
+      quantity: currentQuantity - 1,
+    });
 
-      setCart(newCart);
-      const newCheckout = await updateCheckout(checkoutId, newCart);
-
-      localStorage.setItem(
-        'checkout_id',
-        JSON.stringify([newCart, newCheckout])
-      );
-    }
+    setCart(formattedCart);
+    localStorage.setItem('cart_id', formattedCart.id);
     setCartLoading(false);
+
+    // if (item.variantQuantity === 1) {
+    //   removeCartItem(item.id);
+    // } else {
+    //   let newCart = [];
+    //   cart.map((cartItem) => {
+    //     if (cartItem.id === item.id) {
+    //       cartItem.variantQuantity--;
+    //       newCart = [...cart];
+    //     }
+    //   });
+
+    //   setCart(newCart);
+    //   const newCheckout = await updateCheckout(checkoutId, newCart);
+
+    //   localStorage.setItem(
+    //     'checkout_id',
+    //     JSON.stringify([newCart, newCheckout])
+    //   );
+    // }
+    // setCartLoading(false);
   }
 
   async function clearCart() {
     const updatedCart = [];
 
     setCart(updatedCart);
+    localStorage.removeItem('cart_id');
+    // const newCheckout = await updateCheckout(checkoutId, updatedCart);
 
-    const newCheckout = await updateCheckout(checkoutId, updatedCart);
-
-    localStorage.setItem(
-      'checkout_id',
-      JSON.stringify([updatedCart, newCheckout])
-    );
+    // localStorage.setItem(
+    //   'checkout_id',
+    //   JSON.stringify([updatedCart, newCheckout])
+    // );
   }
 
   async function associateCartToCustomer(token) {
@@ -147,7 +168,12 @@ export default function ShopProvider({ children }) {
       checkoutId,
       token
     );
+    setCheckoutUrl(updatedCheckout.webUrl);
     console.log(updatedCheckout);
+    localStorage.setItem(
+      'checkout_id',
+      JSON.stringify([cart, updatedCheckout])
+    );
   }
 
   return (
