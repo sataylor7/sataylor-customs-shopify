@@ -119,7 +119,7 @@ export default function ProductForm({ product }) {
       )}
       {product.previousCustomOrder && (
         <div className='font-medium text-sky-700'>
-          <a href='#' className='underline underline-offset-4'>
+          <a href='/contact-us' className='underline underline-offset-4'>
             Interested in designing your own? Inquire here
           </a>
         </div>

@@ -225,7 +225,7 @@ export default function ContactUs() {
                 />
                 <label
                   class='inline-block pl-[0.15rem] hover:cursor-pointer'
-                  forHTML='checkboxDefault'>
+                  forhtml='checkboxDefault'>
                   I am not a robot
                 </label>
                 {errors && (

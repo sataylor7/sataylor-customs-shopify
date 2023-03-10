@@ -32,6 +32,9 @@ export default function ShopProvider({ children }) {
 
     if (cartData.lines) {
       setCart(cartData);
+    } else {
+      // remove the storage key
+      localStorage.removeItem('cart_id');
     }
   }
 
