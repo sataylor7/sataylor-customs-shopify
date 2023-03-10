@@ -22,3 +22,9 @@
     min-height: 100vh;
   }
 }
+@media (min-width: 640px) {
+  table {
+    display: inline-table !important;
+    text-align: left;
+  }
+}

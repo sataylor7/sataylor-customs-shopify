@@ -24,56 +24,50 @@ export default function Orders() {
       <h3 className='text-xl'>Order History</h3>
 
       {myOrders.length > 0 ? (
-        <div class='flex flex-col'>
-          <div class='overflow-x-auto sm:-mx-6 lg:-mx-8'>
-            <div class='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
-              <div class='overflow-hidden'>
-                <table class='min-w-full text-left text-sm font-light border border-slate-200'>
-                  <thead class='border-b font-medium'>
-                    <tr>
-                      <th scope='col' class='px-6 py-4'>
-                        Order
-                      </th>
-                      <th scope='col' class='px-6 py-4'>
-                        Date
-                      </th>
-                      <th scope='col' class='px-6 py-4'>
-                        Total
-                      </th>
-                      <th scope='col' class='px-6 py-4'>
-                        Status
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {myOrders.map((order) => (
-                      <tr class='border-b'>
-                        <td class='whitespace-nowrap px-6 py-4'>
-                          #{order.node.orderNumber}
-                        </td>
-                        <td class='whitespace-nowrap px-6 py-4'>
-                          {spacetime(order.node.processedAt).unixFmt(
-                            'MM.dd.yyyy'
-                          )}
-                        </td>
-                        <td class='whitespace-nowrap px-6 py-4'>
-                          {formatter.format(order.node.totalPriceV2.amount)}
-                        </td>
-                        <td class='whitespace-nowrap px-6 py-4'>
-                          <a
-                            className='text-sky-700 underline underline-offset-4'
-                            href={order.node.statusUrl}
-                            target='_blank'
-                            rel='noopener noreferrer'>
-                            Order Status
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+        <div className='flex items-center justify-center'>
+          <div className='container'>
+            <table className='w-full flex flex-row flex-no-wrap overflow-hidden my-5 border-slate-200 border-[1px]'>
+              <thead className='md:border-b font-medium '>
+                <tr className='flex flex-col flex-no wrap sm:table-row  mb-2 sm:mb-0'>
+                  <th scope='col' className='px-6 py-4'>
+                    Order
+                  </th>
+                  <th scope='col' className='px-6 py-4'>
+                    Date
+                  </th>
+                  <th scope='col' className='px-6 py-4'>
+                    Total
+                  </th>
+                  <th scope='col' className='px-6 py-4'>
+                    Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody className='flex-1 sm:flex-none'>
+                {myOrders.map((order) => (
+                  <tr className='md:border-b flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0'>
+                    <td className='whitespace-nowrap px-6 py-4'>
+                      #{order.node.orderNumber}
+                    </td>
+                    <td className='whitespace-nowrap px-6 py-4'>
+                      {spacetime(order.node.processedAt).unixFmt('MM.dd.yyyy')}
+                    </td>
+                    <td className='whitespace-nowrap px-6 py-4'>
+                      {formatter.format(order.node.totalPriceV2.amount)}
+                    </td>
+                    <td className='whitespace-nowrap px-6 py-4'>
+                      <a
+                        className='text-sky-700 underline underline-offset-4'
+                        href={order.node.statusUrl}
+                        target='_blank'
+                        rel='noopener noreferrer'>
+                        Order Status
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       ) : (
