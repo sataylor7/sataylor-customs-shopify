@@ -19,7 +19,7 @@ const footerLinks = [
       },
       {
         id: 1,
-        link: '#',
+        link: '/faqs',
         value: 'FAQs',
       },
       {
