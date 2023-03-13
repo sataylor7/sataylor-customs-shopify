@@ -97,7 +97,7 @@ export default function FAQs() {
             </Disclosure.Panel>
           </Disclosure>
         </div>
-        <div className='shrink-0 w-1/3'>
+        <div className='shrink-0 md:w-1/3'>
           <div className='flex flex-row items-center gap-x-3'>
             <div>
               <span className='inline-block p-3 text-sky-700 rounded-full bg-sky-100/80 '>
