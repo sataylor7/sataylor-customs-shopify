@@ -12,7 +12,7 @@ export default function FAQs() {
           <Disclosure as='div' className=''>
             <Disclosure.Button className='border-b-[1px] border-slate-200 p-2 flex items-center w-full justify-between bg-slate-100'>
               <div className='flex items-center gap-1'>
-                What does the custom order process?
+                What is the custom order process?
               </div>
               <HiChevronDown className='ui-open:rotate-180 ui-open:transform' />
             </Disclosure.Button>
