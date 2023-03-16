@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
   console.log('product', product);
   return (
     <Link href={`/products/${handle}`}>
-      <div className='w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl'>
+      <div className=' bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl'>
         <a className='group'>
           <div className='w-full overflow-hidden bg-gray-200 rounded-t-3xl'>
             <div className='relative group-hover:opacity-75 h-72'>
