@@ -2,6 +2,7 @@ import { getProductsHomePage } from '../lib/shopify';
 import ProductList from '../components/ProductList';
 import Hero from '../components/Hero';
 import Head from 'next/head';
+import Reviews from '@/components/Reviews';
 
 export default function Home({ products }) {
   return (
@@ -50,6 +51,7 @@ export default function Home({ products }) {
       </Head>
       <Hero />
       <ProductList {...{ products, title: 'Featured Products' }} />
+      <Reviews />
     </div>
   );
 }

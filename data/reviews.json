@@ -1,0 +1,18 @@
+{
+  "reviews": [
+    {
+      "name": "Andy A.",
+      "piece_ordered": "messenger bag",
+      "rating": 5,
+      "title": "Love my laptop bag!",
+      "description": "I've been rocking my Pokemon laptop bag for almost two years now and it's still in great shape, plus it's the most stylish bag on the block. I ordered three more bags for friends and family and they all came out nicely as well. Love the customization and uniqueness of each!"
+    },
+    {
+      "name": "Josh V.",
+      "piece_ordered": "messenger bag",
+      "rating": 5,
+      "title": "My first custom designed piece",
+      "description": "I am a software engineer and I need something to help protect my laptop in transit while also looking good. I got everything I asked for from the messenger bag that SA Taylor made for me. I am happy with the craftsmanship and the materials used. I found it to be correctly sized and highly utilitarian, while also looking good. I have received numerous compliments on the bag. I'm really happy that this is my first designer custom piece; it's a great start."
+    }
+  ]
+}
