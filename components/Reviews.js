@@ -1,7 +1,8 @@
 import React from 'react';
-import { reviews } from '@/data/reviews.json';
+import ReviewsJSON from '@/data/reviews.json';
 
 function Reviews() {
+  const { reviews } = ReviewsJSON;
   return (
     <section className='pt-12 md:pt-2 border-t-[1px] border-slate-200'>
       <div className='flex justify-start items-start max-w-2xl mx-auto px-4 py-4 sm:px-6 lg:max-w-7xl lg:px-8 gap-y-3 '>
