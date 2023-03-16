@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { Disclosure } from '@headlessui/react';
 import { HiChevronDown } from 'react-icons/hi';
 export default function FAQs() {
@@ -7,8 +8,28 @@ export default function FAQs() {
       <div className='header-section'>
         <h1>Frequently Asked Questions</h1>
       </div>
-      <div className='max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8 gap-3 flex space-between flex-wrap'>
+      <div className='max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8 gap-3 flex space-between flex-col lg:flex-row'>
         <div className='flex-1'>
+          <Disclosure as='div' className=''>
+            <Disclosure.Button className='border-b-[1px] border-slate-200 p-2 flex items-center w-full justify-between bg-slate-100'>
+              <div className='flex items-center gap-1'>
+                Where can I view the sizing chart?
+              </div>
+              <HiChevronDown className='ui-open:rotate-180 ui-open:transform' />
+            </Disclosure.Button>
+            <Disclosure.Panel className='text-gray-500 p-2'>
+              <div className='w-full overflow-hidden bg-gray-200 rounded-t-3xl'>
+                <div className='relative group-hover:opacity-75 h-72'>
+                  <Image
+                    src='/unisex_size_chart.png'
+                    alt='unisex size chart'
+                    layout='fill'
+                    objectFit='cover'
+                  />
+                </div>
+              </div>
+            </Disclosure.Panel>
+          </Disclosure>
           <Disclosure as='div' className=''>
             <Disclosure.Button className='border-b-[1px] border-slate-200 p-2 flex items-center w-full justify-between bg-slate-100'>
               <div className='flex items-center gap-1'>

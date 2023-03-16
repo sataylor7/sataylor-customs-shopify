@@ -32,7 +32,11 @@ export default function ProductPageContent({ product }) {
 
   SwiperCore.use([Navigation, Pagination]);
   const products = product.collections.edges[0].node.products.edges;
+
+  const allowedSizeChart = ['jacket', 'sweatshirt', 'pants', 'shorts', 'shirt'];
+
   console.log('hello there', products, '\n===> product info:', product);
+
   return (
     <div className='flex flex-col gap-y-8 justify-center'>
       <div className='flex flex-col items-center justify-center w-full max-w-6xl mx-auto space-y-8 md:flex-row md:items-start md:space-y-0 md:space-x-4 lg:space-x-8 mb-8'>
@@ -150,6 +154,20 @@ export default function ProductPageContent({ product }) {
           </div>
         </div>
       </div> */}
+      {allowedSizeChart.includes(product.productType) && (
+        <div className='w-11/12 max-w-3xl py-2 mx-auto space-y-8'>
+          <div className='w-full'>
+            <div className='relative w-full h-72'>
+              <Image
+                src='/unisex_size_chart.png'
+                alt='unisex size chart'
+                layout='fill'
+                objectFit='contain'
+              />
+            </div>
+          </div>
+        </div>
+      )}
       <hr className='my-2 border-gray-200' />
       {/** SHIPPING / RETURNS  */}
       <div className='flex flex-col md:flex-row gap-2 w-full max-w-screen-xl mx-auto  text-slate-700'>
