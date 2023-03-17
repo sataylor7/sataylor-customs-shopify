@@ -8,8 +8,7 @@ const ProductCard = ({ product }) => {
   const { altText, url } = product?.node?.images?.edges[0]?.node;
 
   const price = product.node.priceRange.minVariantPrice.amount;
-  console.log('product availableForSale', availableForSale);
-  console.log('product', product);
+
   return (
     <Link href={`/products/${handle}`}>
       <div className=' bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl'>
