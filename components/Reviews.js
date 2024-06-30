@@ -18,9 +18,9 @@ const Stars = ({ rating }) => {
           <li key={star}>
             <svg {...attrs}>
               <path
-                fill-rule='evenodd'
+                fillRule='evenodd'
                 d='M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z'
-                clip-rule='evenodd'
+                clipRule='evenodd'
               />
             </svg>
           </li>
@@ -39,42 +39,36 @@ function Reviews() {
           Reviews
         </p>
       </div>
-      <div className='flex justify-center items-center'>
-        <div className='flex flex-col justify-start items-start w-full space-y-4'>
-          <div className='w-full flex justify-start items-start flex-col bg-slate-100 p-8 gap-y-4'>
-            {reviews.map(
-              ({ name, piece_ordered, rating, title, description }) => {
-                return (
-                  <div className='border-b-[1px] border-sky-600 last:border-0 pb-5 wrapper'>
-                    <div className='flex flex-col md:flex-row justify-between w-full'>
-                      <div className='flex flex-row justify-between items-start'>
-                        <p className='text-xl md:text-2xl font-medium leading-normal text-gray-800 '>
-                          {title} <span className='text-l font-light'>|</span>{' '}
-                          <span className='text-m font-thin'>
-                            {piece_ordered}
-                          </span>
-                        </p>
-                      </div>
-                      <Stars {...{ rating }} />
-                    </div>
-                    <div id='menu' className='md:block'>
-                      <p className='mt-3 text-base leading-normal text-gray-600  w-full md:w-9/12 xl:w-5/6'>
-                        {description}
+      <div class=' bg-slate-100 p-8 gap-y-4'>
+        {reviews.map(({ name, piece_ordered, rating, title, description }) => {
+          return (
+            <div className='border-b-[1px] border-sky-600 last:border-0 pb-5 wrapper flex mb-4 flex-col md:flex-row justify-start items-start'>
+              <div className='w-full md:w-3/'>
+                <div>
+                  <p className='text-xl md:text-2xl font-medium leading-normal text-gray-800 '>
+                    {title} <span className='text-l font-light'>|</span>{' '}
+                    <span className='text-m font-thin'>{piece_ordered}</span>
+                  </p>
+                </div>
+                <div id='menu' className='md:block'>
+                  <p className='mt-3 text-base leading-normal text-gray-600  w-full md:w-9/12 xl:w-5/6'>
+                    {description}
+                  </p>
+                  <div className='mt-6 flex justify-start items-center flex-row space-x-2.5'>
+                    <div className='flex flex-col justify-start items-start space-y-2'>
+                      <p className='text-base font-medium leading-none text-gray-800 '>
+                        {name}
                       </p>
-                      <div className='mt-6 flex justify-start items-center flex-row space-x-2.5'>
-                        <div className='flex flex-col justify-start items-start space-y-2'>
-                          <p className='text-base font-medium leading-none text-gray-800 '>
-                            {name}
-                          </p>
-                        </div>
-                      </div>
                     </div>
                   </div>
-                );
-              }
-            )}
-          </div>
-        </div>
+                </div>
+              </div>
+              <div className='w-full md:w-1/4 h-12'>
+                <Stars {...{ rating }} />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
